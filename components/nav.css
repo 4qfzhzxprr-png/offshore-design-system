@@ -1,0 +1,142 @@
+/* =============================================================================
+   Component — Floating Nav Pill
+   -----------------------------------------------------------------------------
+   The customer-facing nav pattern: a glass pill that floats above content,
+   detached from the top edge by 18px on every viewport. The brand mark sits
+   on the left, links in the middle, and a primary CTA on the right (often
+   "Shop" or "Sign in").
+
+   On mobile the .nav-links are hidden via display:none; a hamburger
+   button (.nav-mobile-btn) opens a sheet overlay (.mobile-sheet).
+
+   Markup:
+     <nav class="nav-shell">
+       <div class="nav-pill">
+         <a href="/" class="nav-brand">
+           <span class="nav-brand-mark">o</span>
+           Offshore Co.
+         </a>
+         <ul class="nav-links">
+           <li><a href="..." class="nav-link">Watches</a></li>
+           ...
+         </ul>
+         <a href="..." class="nav-cta">Shop <span>→</span></a>
+       </div>
+     </nav>
+
+   The .admin-nav pattern is different — it's a top bar (not a pill) for
+   tooling surfaces. See components/admin-nav.css if you need it.
+============================================================================= */
+
+.nav-shell {
+  position: fixed;
+  top: 18px;
+  left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+  padding: 0 16px;
+}
+.nav-pill {
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 6px 6px 22px;
+  background: rgba(240, 235, 216, 0.78);
+  -webkit-backdrop-filter: saturate(140%) blur(18px);
+  backdrop-filter: saturate(140%) blur(18px);
+  border-radius: var(--r-pill);
+  box-shadow: var(--shadow-float), inset 0 0 0 1px var(--ink-hairline);
+  max-width: 100%;
+}
+
+.nav-brand {
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: var(--caps-tight);
+  text-transform: uppercase;
+  color: var(--navy);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-right: 16px;
+  border-right: 1px solid var(--ink-hairline);
+  margin-right: 4px;
+}
+.nav-brand-mark {
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  background: var(--navy);
+  color: var(--bone);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--serif);
+  font-size: 11px;
+  font-weight: 500;
+  font-style: italic;
+  letter-spacing: -0.02em;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.nav-link {
+  padding: 8px 14px;
+  font-family: var(--sans);
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--ink-soft);
+  border-radius: var(--r-pill);
+  transition: color 180ms var(--ease-button),
+              background-color 180ms var(--ease-button);
+}
+@media (hover: hover) and (pointer: fine) {
+  .nav-link:hover {
+    color: var(--navy);
+    background: var(--ink-whisper);
+  }
+}
+
+.nav-cta {
+  padding: 9px 18px;
+  background: var(--navy);
+  color: var(--bone);
+  border-radius: var(--r-pill);
+  font-size: 12.5px;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: transform 220ms var(--ease-out-strong),
+              background-color 220ms var(--ease-button);
+}
+.nav-cta:active { transform: scale(0.97); }
+@media (hover: hover) and (pointer: fine) {
+  .nav-cta:hover { background: var(--navy-deep); }
+}
+
+/* Mobile breakpoint — hide nav-links, show hamburger.
+   Wire up your own .mobile-sheet for the actual menu. */
+@media (max-width: 720px) {
+  .nav-links { display: none; }
+  .nav-mobile-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px; height: 36px;
+    background: var(--navy);
+    color: var(--bone);
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+  }
+}

@@ -1,0 +1,97 @@
+/* =============================================================================
+   Offshore Design System — Spacing, Radii, Easing
+   -----------------------------------------------------------------------------
+   Section padding is the primary rhythm device. Consider:
+
+     .section          120px top/bottom padding    — the default
+     .section.compact   80px top/bottom padding    — for shorter strips
+     .section.tall     160px top/bottom padding    — for hero / impact
+
+   Horizontal padding stays at 32px desktop / 24px tablet / 16px mobile so
+   the page breathes consistently regardless of which section type it is.
+
+   Section-inner caps width at 1240px and centers — keeps line lengths
+   readable on wide screens.
+
+   Radii: pill (999) for buttons + nav + tags. Card (18) for product cards
+   and primary surfaces. Frame (24) for outer hero/image frames. Inner-radius
+   variants subtract 6/8 to nest cleanly inside their outer.
+
+   Easing: prefer the strong custom curves over the weak built-ins. The
+   default for all UI is --ease-out-strong. Use --ease-button for color
+   transitions on hovers, --ease-drawer for slide-out panels, and
+   --ease-in-out-strong for major page transitions.
+============================================================================= */
+
+:root {
+  /* RADII */
+  --r-pill:         999px;
+  --r-card:         18px;
+  --r-card-inner:   calc(18px - 6px);
+  --r-frame:        24px;
+  --r-frame-inner:  calc(24px - 8px);
+
+  /* CUSTOM EASING — all UI motion should use one of these */
+  --ease-out-strong:    cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out-strong: cubic-bezier(0.77, 0, 0.175, 1);
+  --ease-drawer:        cubic-bezier(0.32, 0.72, 0, 1);
+  --ease-button:        cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ----- Sections + container ---------------------------------------------- */
+
+.section          { position: relative; padding: 120px 32px; }
+.section.compact  { padding: 80px 32px; }
+.section.tall     { padding: 160px 32px; }
+
+@media (max-width: 720px) {
+  .section          { padding: 80px 16px; }
+  .section.compact  { padding: 56px 16px; }
+  .section.tall     { padding: 120px 16px; }
+}
+
+.section-inner {
+  max-width: 1240px;
+  margin: 0 auto;
+  position: relative;
+}
+
+/* ----- Tick rule — section divider with brass dot ------------------------ */
+
+.tick-rule {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  color: var(--ink-faint);
+  font-size: 10.5px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: var(--caps-track);
+  margin-bottom: 32px;
+}
+.tick-rule .line {
+  flex: 1;
+  height: 1px;
+  background: var(--ink-hairline);
+}
+.tick-rule .dot {
+  width: 5px; height: 5px;
+  background: var(--brass);
+  border-radius: 50%;
+}
+
+/* ----- Reset basics — opt-in by including this file --------------------- */
+
+* { box-sizing: border-box; }
+
+*:focus-visible {
+  outline: 2px solid var(--brass);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+html { scroll-behavior: smooth; }
+
+img { max-width: 100%; display: block; }
+a   { color: inherit; text-decoration: none; }
+button { font: inherit; cursor: pointer; }

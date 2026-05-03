@@ -1,0 +1,59 @@
+/* =============================================================================
+   Component — Status pills
+   -----------------------------------------------------------------------------
+   Small uppercase pills used to mark a piece's status. Three kinds:
+
+     .status.featured   brass — "highlighted, attention here"
+     .status.upcoming   ink-faint — "not yet, planned, dimmed"
+     .status.live       navy — "shipping now"
+
+   Markup:
+     <span class="status featured">Featured</span>
+     <span class="status upcoming">Available Spring 2026</span>
+     <span class="status live">Live · 2026</span>
+
+   Use sparingly — only one or two on a card / row. They're punctuation,
+   not labels.
+============================================================================= */
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: var(--r-pill);
+  font-family: var(--sans);
+  font-size: 10.5px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: var(--caps-tight);
+  white-space: nowrap;
+}
+
+.status.featured {
+  background: var(--brass-soft);
+  color: var(--brass);
+}
+.status.featured::before {
+  content: '';
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--brass);
+}
+
+.status.upcoming {
+  background: var(--ink-whisper);
+  color: var(--ink-faint);
+  border: 1px solid var(--ink-hairline);
+}
+
+.status.live {
+  background: var(--navy);
+  color: var(--bone);
+}
+.status.live::before {
+  content: '';
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--brass);
+}

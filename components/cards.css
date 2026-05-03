@@ -1,0 +1,113 @@
+/* =============================================================================
+   Component — Cards (product cards, content cards)
+   -----------------------------------------------------------------------------
+   Two card patterns:
+
+   1. .card — generic content card with the doppelrand frame + inner radius.
+      Used for product grid cards, line cards, partner cards. Hover lift + a
+      thin hairline that thickens to ink-quiet.
+
+   2. .bento-card — for richer marketing-page surfaces (homepage features,
+      moments). Larger, with more breathing room, often paired with imagery
+      that bleeds to the inner radius.
+
+   The .doppel-frame is a wrapper pattern: a 1px hairline outer + a small
+   gutter + a rounded inner. Gives the impression of a lithograph plate.
+============================================================================= */
+
+.card {
+  background: var(--paper);
+  border-radius: var(--r-card);
+  padding: 16px;
+  box-shadow: inset 0 0 0 1px var(--ink-hairline), var(--shadow-card);
+  transition: transform 320ms var(--ease-out-strong),
+              box-shadow 320ms var(--ease-out-strong);
+}
+@media (hover: hover) and (pointer: fine) {
+  .card:hover {
+    transform: translateY(-2px);
+    box-shadow: inset 0 0 0 1px var(--ink-quiet), var(--shadow-card-hover);
+  }
+}
+
+.card-image {
+  border-radius: var(--r-card-inner);
+  overflow: hidden;
+  aspect-ratio: 4/5;
+  margin-bottom: 16px;
+  background: var(--sand);
+}
+.card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.card-image.dimmed img { opacity: 0.55; filter: saturate(0.85); }
+
+.card-name {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: var(--navy);
+  margin: 0 0 4px;
+}
+.card-name em {
+  font-style: italic;
+  color: var(--brass);
+}
+
+.card-meta {
+  font-family: var(--sans);
+  font-size: 11.5px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: var(--caps-tight);
+  color: var(--ink-faint);
+  margin-bottom: 12px;
+}
+
+.card-price {
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--ink);
+}
+.card-price.dimmed { color: var(--ink-faint); }
+
+/* ----- Bento — larger marketing card ----------------------------------- */
+
+.bento-card {
+  background: var(--paper);
+  border-radius: var(--r-card);
+  padding: 36px 32px;
+  box-shadow: inset 0 0 0 1px var(--ink-hairline), var(--shadow-card);
+  transition: transform 320ms var(--ease-out-strong),
+              box-shadow 320ms var(--ease-out-strong);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+@media (hover: hover) and (pointer: fine) {
+  .bento-card:hover {
+    transform: translateY(-3px);
+    box-shadow: inset 0 0 0 1px var(--ink-quiet), var(--shadow-card-hover);
+  }
+}
+
+/* ----- Doppelrand frame — outer hairline + gutter + inner radius ------- */
+/* Wrap any image / surface in this for the "lithograph plate" feel. */
+
+.doppel-frame {
+  position: relative;
+  padding: 8px;
+  background: rgba(29, 45, 68, 0.04);
+  border-radius: var(--r-frame);
+  box-shadow: inset 0 0 0 1px var(--ink-hairline), var(--shadow-card);
+}
+.doppel-frame-inner {
+  border-radius: var(--r-frame-inner);
+  overflow: hidden;
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.4);
+}

@@ -1,0 +1,132 @@
+/* =============================================================================
+   Component — Buttons
+   -----------------------------------------------------------------------------
+   Two primary variants:
+
+     .btn              navy on bone (primary)
+     .btn.alt          bone on navy hairline (secondary)
+
+   Sizes:
+     default           padding: 12px 14px 12px 24px / font-size: 13.5px
+     .btn.compact      padding: 10px 12px 10px 20px / font-size: 12.5px
+
+   The "button-in-button" pattern: a circular icon container sits inside the
+   pill, with its own background tint. It gives the primary button a small
+   architectural detail without adding visual weight. Use:
+
+     <button class="btn">
+       Browse the line
+       <span class="btn-icon">→</span>
+     </button>
+
+   The icon container is optional. A plain pill works fine for utility actions.
+
+   Admin / utility buttons used inside forms (.btn.brass, .btn.ghost,
+   .btn.danger) are smaller and rectangular — see components/forms.css.
+============================================================================= */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 14px 12px 24px;
+  border: none;
+  background: var(--navy);
+  color: var(--bone);
+  font-family: var(--sans);
+  font-size: 13.5px;
+  font-weight: 500;
+  letter-spacing: 0;
+  border-radius: var(--r-pill);
+  text-decoration: none;
+  position: relative;
+  isolation: isolate;
+  transition: transform 220ms var(--ease-out-strong),
+              background-color 220ms var(--ease-button);
+  will-change: transform;
+}
+.btn:active { transform: scale(0.97); }
+
+.btn .btn-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--r-pill);
+  background: rgba(240, 235, 216, 0.14);
+  color: var(--bone);
+  flex-shrink: 0;
+  transition: transform 320ms var(--ease-out-strong),
+              background-color 220ms var(--ease-button);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .btn:hover { background: var(--navy-deep); }
+  .btn:hover .btn-icon {
+    transform: translateX(2px) translateY(-1px);
+    background: rgba(240, 235, 216, 0.22);
+  }
+}
+
+/* Secondary — bone on hairline */
+.btn.alt {
+  background: var(--bone);
+  color: var(--navy);
+  box-shadow: inset 0 0 0 1px var(--ink-hairline);
+}
+.btn.alt .btn-icon {
+  background: var(--ink-whisper);
+  color: var(--navy);
+}
+@media (hover: hover) and (pointer: fine) {
+  .btn.alt:hover {
+    background: var(--paper);
+    box-shadow: inset 0 0 0 1px var(--ink-quiet);
+  }
+  .btn.alt:hover .btn-icon { background: var(--ink-hairline); }
+}
+
+/* Compact — same shape, smaller */
+.btn.compact { padding: 10px 12px 10px 20px; font-size: 12.5px; }
+.btn.compact .btn-icon { width: 28px; height: 28px; }
+
+/* ----- Text link with animated underline + arrow ------------------------- */
+
+.text-link {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 8px;
+  font-family: var(--sans);
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--ink);
+  position: relative;
+  padding-bottom: 2px;
+  transition: color 200ms var(--ease-button);
+}
+.text-link::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 1px;
+  background: currentColor;
+  transform-origin: right;
+  transform: scaleX(1);
+  transition: transform 320ms var(--ease-out-strong);
+  opacity: 0.4;
+}
+@media (hover: hover) and (pointer: fine) {
+  .text-link:hover::after {
+    transform-origin: left;
+    transform: scaleX(1);
+    opacity: 1;
+  }
+}
+.text-link .arrow {
+  display: inline-block;
+  transition: transform 240ms var(--ease-out-strong);
+}
+@media (hover: hover) and (pointer: fine) {
+  .text-link:hover .arrow { transform: translateX(3px); }
+}

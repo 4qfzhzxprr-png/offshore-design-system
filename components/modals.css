@@ -1,0 +1,128 @@
+/* =============================================================================
+   Component — Modals (auth, search, generic)
+   -----------------------------------------------------------------------------
+   A bone-on-scrim modal with the same doppelrand framing as cards. Two
+   primary uses in offshore:
+
+     1. Sign-in modal (magic link form)
+     2. Search modal (Cmd+K)
+
+   Markup pattern:
+
+     <div class="modal-scrim" data-modal-open>
+       <div class="modal" role="dialog" aria-modal="true">
+         <button class="modal-close" aria-label="Close">×</button>
+         <h2 class="modal-title">Sign <em class="brass">in.</em></h2>
+         <p class="modal-body">...</p>
+         <form class="modal-form">...</form>
+       </div>
+     </div>
+
+   The scrim is fixed-position with a slight blur. The modal element rises
+   from below + fades in on a 280ms ease-out-strong. Keep modals centered
+   and capped at 480px width — wider feels imprecise.
+============================================================================= */
+
+.modal-scrim {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: rgba(13, 19, 33, 0.50);
+  -webkit-backdrop-filter: saturate(140%) blur(6px);
+  backdrop-filter: saturate(140%) blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 200ms var(--ease-button);
+}
+.modal-scrim.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal {
+  position: relative;
+  background: var(--bone);
+  border-radius: var(--r-frame);
+  padding: 36px 36px 32px;
+  width: 100%;
+  max-width: 480px;
+  box-shadow: var(--shadow-float),
+              inset 0 0 0 1px var(--ink-hairline);
+  transform: translateY(12px);
+  opacity: 0;
+  transition: transform 280ms var(--ease-out-strong),
+              opacity 200ms var(--ease-button);
+}
+.modal-scrim.open .modal {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.modal-close {
+  position: absolute;
+  top: 14px; right: 14px;
+  width: 28px; height: 28px;
+  background: transparent;
+  border: 1px solid var(--ink-hairline);
+  border-radius: 50%;
+  color: var(--ink-soft);
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 160ms var(--ease-button), border-color 160ms var(--ease-button);
+}
+.modal-close:hover {
+  color: var(--ink);
+  border-color: var(--ink-quiet);
+}
+
+.modal-title {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: 36px;
+  line-height: 1;
+  letter-spacing: var(--display-track);
+  color: var(--navy);
+  margin: 0 0 14px;
+}
+.modal-title em {
+  font-style: italic;
+  color: var(--brass);
+}
+
+.modal-body {
+  font-family: var(--sans);
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--ink-soft);
+  margin: 0 0 20px;
+}
+
+.modal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.modal-form input[type="email"],
+.modal-form input[type="text"],
+.modal-form input[type="search"] {
+  font-family: var(--sans);
+  font-size: 15px;
+  padding: 12px 16px;
+  border: 1px solid var(--ink-hairline);
+  border-radius: 8px;
+  background: var(--paper);
+  color: var(--ink);
+  transition: border-color 160ms var(--ease-button);
+}
+.modal-form input:focus {
+  outline: none;
+  border-color: var(--brass);
+}

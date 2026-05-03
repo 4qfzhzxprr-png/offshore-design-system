@@ -1,0 +1,66 @@
+/* =============================================================================
+   Offshore Design System — Color Tokens (Deep Sea palette)
+   -----------------------------------------------------------------------------
+   Six surface colors + one accent + one warm.
+
+   The palette is built around a hierarchy of warm cream surfaces against deep
+   navy ink. Brass (a desaturated light blue) is the only accent — used for
+   italic punctuation, eyebrows, and small details. Terracotta is a warm
+   second accent used sparingly for cause-aligned moments.
+
+   --bone is the primary background. --paper is a slightly warmer secondary
+   surface for cards and lifted regions. --sand is a warmer still tertiary
+   for sections that need to step away from --bone without going dark.
+
+   --navy is primary ink. --navy-deep is reserved for the darkest surfaces
+   (dark mode also keeps it at the same hex — its character is "deep" in
+   both modes). --navy-rich is intermediate ink, used for hovers / selected
+   states / compact UI on light surfaces.
+
+   The ink scale (--ink, --ink-soft, --ink-faint, --ink-quiet, --ink-hairline,
+   --ink-whisper) gives a fixed-stop ramp of opacity-on-navy values. Always
+   prefer one of these over hardcoding rgba(29,45,68,...).
+
+   Dark-mode flips (in tokens/dark.css):
+     --bone → dark navy   (background inverts)
+     --navy → cream       (ink inverts)
+     --navy-deep stays    (deep sections keep their character)
+     --brass / --terracotta unchanged (work on both)
+============================================================================= */
+
+:root {
+  /* CORE PALETTE */
+  --navy:        #1D2D44;
+  --navy-deep:   #0D1321;
+  --navy-rich:   #3E5C76;
+
+  --sand:        #E5DEC4;
+  --bone:        #F0EBD8;
+  --paper:       #FAF7E8;
+
+  --brass:       #748CAB;
+  --brass-soft:  rgba(116, 140, 171, 0.18);
+
+  --terracotta:  #c97650;
+
+  /* INK SCALE — opacity ramp on navy */
+  --ink:           var(--navy);
+  --ink-soft:      rgba(29, 45, 68, 0.72);
+  --ink-faint:     rgba(29, 45, 68, 0.48);
+  --ink-quiet:     rgba(29, 45, 68, 0.28);
+  --ink-hairline:  rgba(29, 45, 68, 0.10);
+  --ink-whisper:   rgba(29, 45, 68, 0.05);
+
+  /* INVERSE INK SCALE — opacity ramp on bone, used on dark surfaces */
+  --bone-soft:      rgba(240, 235, 216, 0.78);
+  --bone-faint:     rgba(240, 235, 216, 0.55);
+  --bone-hairline:  rgba(240, 235, 216, 0.14);
+
+  /* SHADOWS — soft, ambient, never harsh; use sparingly */
+  --shadow-card:        0 1px 2px rgba(29, 45, 68, 0.04),
+                        0 8px 24px -8px rgba(29, 45, 68, 0.08);
+  --shadow-card-hover:  0 1px 2px rgba(29, 45, 68, 0.06),
+                        0 24px 48px -16px rgba(29, 45, 68, 0.16);
+  --shadow-float:       0 1px 1px rgba(29, 45, 68, 0.04),
+                        0 12px 32px -8px rgba(29, 45, 68, 0.12);
+}

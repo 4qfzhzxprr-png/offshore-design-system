@@ -1,0 +1,77 @@
+/* =============================================================================
+   Component — Empty states + loaders
+   -----------------------------------------------------------------------------
+   Small utility components for data-display surfaces.
+
+     .empty       — no-data placeholder ("No items yet.")
+     .loader      — inline loader with brass dot animation
+     .skeleton    — content-shaped placeholder block
+
+   Markup:
+     <div class="empty">No products yet.</div>
+
+     <div class="loader">
+       <span class="loader-dot"></span>
+       Loading products...
+     </div>
+
+     <div class="skeleton" style="width: 100%; height: 18px;"></div>
+============================================================================= */
+
+.empty {
+  padding: 40px 24px;
+  text-align: center;
+  font-family: var(--sans);
+  font-size: 13px;
+  color: var(--ink-faint);
+  background: var(--bone);
+  border: 1px dashed var(--ink-hairline);
+  border-radius: 8px;
+}
+
+.loader {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 18px 24px;
+  font-family: var(--sans);
+  font-size: 12.5px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: var(--caps-tight);
+  color: var(--ink-faint);
+}
+.loader-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--brass);
+  animation: ofs-loader-pulse 1.2s var(--ease-out-strong) infinite;
+}
+@keyframes ofs-loader-pulse {
+  0%, 100% { opacity: 0.3; transform: scale(0.85); }
+  50%      { opacity: 1.0; transform: scale(1.0); }
+}
+
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--ink-whisper) 0%,
+    var(--ink-hairline) 50%,
+    var(--ink-whisper) 100%
+  );
+  background-size: 200% 100%;
+  border-radius: 4px;
+  animation: ofs-skeleton-slide 1.4s linear infinite;
+}
+@keyframes ofs-skeleton-slide {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* Reduce motion — respect the user's preference */
+@media (prefers-reduced-motion: reduce) {
+  .loader-dot,
+  .skeleton {
+    animation: none;
+  }
+}

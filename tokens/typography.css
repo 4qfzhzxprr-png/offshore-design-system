@@ -1,0 +1,127 @@
+/* =============================================================================
+   Offshore Design System — Typography Tokens
+   -----------------------------------------------------------------------------
+   Two families do all the work:
+
+     --serif (Fraunces) — editorial display. Headlines, statement quotes,
+       single italic words used as punctuation. Weight 300 for the largest
+       hero displays; 400 for everything else. Italic 400 in --brass is the
+       brand's signature design move (see VOICE.md).
+
+     --sans (Inter) — everything functional. Body, eyebrows, labels, button
+       text, micro-caps, table cells. Weights 400/500/600.
+
+     --mono (Geist Mono / system fallback) — code, slugs, IDs, technical
+       readouts. Use sparingly.
+
+   Font loading: link Fraunces and Inter from Google Fonts in <head>:
+
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+     <link rel="stylesheet" href="
+       https://fonts.googleapis.com/css2?
+       family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;
+                                       0,9..144,600;1,9..144,300;1,9..144,400&
+       family=Inter:wght@300;400;500;600&
+       display=swap">
+
+   (URL line-broken here for reading — must be one line in the actual link.)
+============================================================================= */
+
+:root {
+  /* FAMILIES */
+  --serif: 'Fraunces', 'Iowan Old Style', Georgia, serif;
+  --sans:  'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --mono:  'Geist Mono', ui-monospace, 'SF Mono', 'Menlo', 'Consolas', monospace;
+
+  /* TRACKING — letter-spacing values used across the system */
+  --display-track:  -0.03em;   /* large display serif (negative tracking) */
+  --caps-track:     0.22em;    /* uppercase eyebrows + microcaps */
+  --caps-tight:     0.14em;    /* uppercase nav + small UI */
+}
+
+/* ----- Base body ---------------------------------------------------------- */
+
+body {
+  font-family: var(--sans);
+  font-size: 15px;
+  line-height: 1.6;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: 'ss01', 'cv11';
+}
+
+/* ----- Editorial display class — apply to large headlines ----------------- */
+
+.display-serif {
+  font-family: var(--serif);
+  font-weight: 400;
+  letter-spacing: var(--display-track);
+  line-height: 0.98;
+  font-feature-settings: 'ss01', 'ss02';
+}
+
+/* ----- THE SIGNATURE — italic-brass punctuation -------------------------- */
+/* Use <em class="brass">word</em> anywhere brass italic is wanted.
+   This is the brand's main visual signature. See VOICE.md for usage rules. */
+
+em.brass {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--brass);
+}
+
+/* ----- Eyebrow — small caps brass text with a leading rule --------------- */
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--sans);
+  font-size: 10.5px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: var(--caps-track);
+  color: var(--brass);
+}
+.eyebrow::before {
+  content: '';
+  width: 18px;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.65;
+}
+.eyebrow.no-rule::before { display: none; }
+.eyebrow.on-dark { color: var(--brass); }
+
+/* ----- Lede — large soft body paragraph used after a headline ------------ */
+
+.lede {
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+  max-width: 52ch;
+  font-weight: 400;
+}
+
+/* ----- Micro-caps — tiny uppercase label, used for meta + counts --------- */
+
+.micro-caps {
+  font-family: var(--sans);
+  font-size: 10.5px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: var(--caps-track);
+  color: var(--ink-faint);
+}
+
+/* ----- Mono — slugs, IDs, technical readouts ----------------------------- */
+
+.mono {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0;
+  color: var(--ink-soft);
+}

@@ -29,10 +29,18 @@ html[data-theme="dark"] {
 
   --ink:           var(--navy);
   --ink-soft:      rgba(240, 235, 216, 0.72);
-  --ink-faint:     rgba(240, 235, 216, 0.48);
+  /* Bumped 0.48 → 0.62 to clear WCAG AA 4.5:1 on dark surfaces (~5.97:1). */
+  --ink-faint:     rgba(240, 235, 216, 0.62);
   --ink-quiet:     rgba(240, 235, 216, 0.28);
   --ink-hairline:  rgba(240, 235, 216, 0.10);
   --ink-whisper:   rgba(240, 235, 216, 0.05);
+
+  /* Dark-mode accent overrides — both deep variants need to be LIGHTER
+     (not darker) than their bases to clear contrast against dark surfaces.
+     The light-mode --brass-deep #455e92 is dark-blue and would fail in dark
+     mode; here we go the other direction. */
+  --brass-deep:      #a3b5cc;
+  --terracotta-deep: #d68966;
 
   --bone-soft:      rgba(13, 19, 33, 0.78);
   --bone-faint:     rgba(13, 19, 33, 0.55);

@@ -32,7 +32,9 @@
 
 .status.featured {
   background: var(--brass-soft);
-  color: var(--brass);
+  /* Deeper brass for the small-caps text — original brass on brass-soft is
+     ~3.13:1 (fails AA 4.5:1). Dot keeps --brass for the visual signature. */
+  color: var(--brass-deep, var(--brass));
 }
 .status.featured::before {
   content: '';

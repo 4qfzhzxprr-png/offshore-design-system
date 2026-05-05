@@ -156,7 +156,10 @@
               color 160ms var(--ease-button);
 }
 .btn.brass {
-  background: var(--brass);
+  /* Deeper brass for the bg so bone text on it clears AA — bone on the
+     original --brass is 2.89:1. Falls back to --brass when brass-deep is
+     undefined (older consumers). */
+  background: var(--brass-deep, var(--brass));
   color: var(--bone);
 }
 .btn.brass:hover { background: var(--navy-rich); }
@@ -173,7 +176,8 @@
 
 .btn.danger {
   background: transparent;
-  color: var(--terracotta);
+  /* Deeper terracotta for AA contrast — original on bone is 3.15:1. */
+  color: var(--terracotta-deep, var(--terracotta));
   border-color: var(--ink-hairline);
 }
 .btn.danger:hover {

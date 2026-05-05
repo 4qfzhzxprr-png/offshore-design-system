@@ -84,7 +84,11 @@ em.brass {
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: var(--caps-track);
-  color: var(--brass);
+  /* --brass-deep is the AA-compliant variant for small UI text on light
+     surfaces; falls back to --brass on consumers that haven't defined the
+     deep tokens yet. Display-headline em.brass keeps --brass — that's the
+     brand signature where contrast is an intentional brand exception. */
+  color: var(--brass-deep, var(--brass));
 }
 .eyebrow::before {
   content: '';

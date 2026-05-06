@@ -1,11 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
   <title>Offshore Co.</title>
-  <!-- Outer C: thick navy ring with a 50° opening on the right. -->
+  <!-- Outer C: thick navy ring with a 28° opening on the right. -->
   <circle cx="256" cy="256" r="204.8"
           fill="none" stroke="#1D2D44" stroke-width="69.1"
-          stroke-dasharray="1108.1 178.7"
-          transform="rotate(-65.0 256 256)"/>
+          stroke-dasharray="1186.7 100.1"
+          transform="rotate(-76.0 256 256)"/>
   <!-- Inner o: small ring inside the C, upper-right. -->
-  <circle cx="363.5" cy="174.1" r="58.9"
-          fill="none" stroke="#1D2D44" stroke-width="38.4"/>
+  <circle cx="297.0" cy="163.8" r="79.4"
+          fill="none" stroke="#1D2D44" stroke-width="46.1"/>
 </svg>

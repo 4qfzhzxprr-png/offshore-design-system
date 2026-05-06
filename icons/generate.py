@@ -33,11 +33,11 @@ HERE = Path(__file__).parent
 # o nestled inside its upper-right interior).
 OUTER_STROKE_PCT = 0.135       # outer C stroke width
 OUTER_INSET_PCT = 0.10         # margin from canvas edge to outer C bbox
-OUTER_GAP_DEG = 50             # opening on the right of the C (degrees)
-INNER_R_PCT = 0.115            # inner o ring radius
-INNER_STROKE_PCT = 0.075       # inner o stroke width
-INNER_CX_PCT = 0.71            # inner o center, fraction of canvas width
-INNER_CY_PCT = 0.34            # inner o center, fraction of canvas height
+OUTER_GAP_DEG = 28             # opening on the right of the C (degrees)
+INNER_R_PCT = 0.155            # inner o ring radius
+INNER_STROKE_PCT = 0.090       # inner o stroke width
+INNER_CX_PCT = 0.58            # inner o center, fraction of canvas width
+INNER_CY_PCT = 0.32            # inner o center, fraction of canvas height
 
 
 def render_icon(size: int, padding_ratio: float = 0.0) -> Image.Image:

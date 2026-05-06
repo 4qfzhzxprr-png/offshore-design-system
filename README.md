@@ -83,6 +83,15 @@ Before writing a single line of CSS in your new project, open `preview/index.htm
 
 Read `VOICE.md`. Specifically the italic-brass rule. **It's the single most important thing in this repo** — copy the components verbatim and ignore VOICE.md, and you'll have a project that LOOKS like Offshore but doesn't feel like it.
 
+## Keeping consumers in sync
+
+There are two consumers of this repo. They differ in how they integrate, which is why there's only one sync script and it only targets one of them:
+
+- **`offshores-pipeline`** — _true consumer_. Mirrors `tokens/`, `components/`, and `js/` 1:1 into `public/design-system/`, loaded via `<link>` and `<Script>` tags from `app/layout.tsx`. After every meaningful canonical change, run `python sync.py --apply` from this repo to push updates into the pipeline. The sync script's dry-run mode (no flag) prints what would change without writing.
+- **`offshore-revamp`** — _fork_. The storefront's Jinja2 templates inline their own copies of the tokens with storefront-specific extensions (footer / cause-callout / admin-nav dark-mode color overrides in its `theme.js`, the PWA service-worker shell, etc). **The sync script intentionally does not touch the storefront.** When you change a token here, mirror the value into the matching `:root` block in `offshore-revamp/_template/{index,line,product}.html.j2` by hand. When `theme.js` changes meaningfully, hand-merge into the storefront's fork — don't `cp` over it (you'll wipe the overrides).
+
+The sync rule exists because both consumers ship as PWAs (`offshore-revamp` since `333e5a5`, `offshores-pipeline` since `4c40420`). An installed user shouldn't see a stale design system days after the canonical was updated. **Sync as part of the change, not a follow-up.**
+
 ## Versioning
 
 This is v0. Conventions:

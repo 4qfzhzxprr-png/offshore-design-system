@@ -83,50 +83,46 @@ def render_icon(size: int, padding_ratio: float = 0.0) -> Image.Image:
     return img
 
 
-SVG_TEMPLATE = """\
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-  <title>Offshore Co.</title>
-  <!-- Outer C: thick navy ring with a {gap}° opening on the right. -->
-  <circle cx="256" cy="256" r="{outer_r}"
-          fill="none" stroke="#1D2D44" stroke-width="{outer_w}"
-          stroke-dasharray="{dash} {gap_arc}"
-          transform="rotate(-{rot} 256 256)"/>
-  <!-- Inner o: small ring inside the C, upper-right. -->
-  <circle cx="{inner_cx}" cy="{inner_cy}" r="{inner_r}"
-          fill="none" stroke="#1D2D44" stroke-width="{inner_w}"/>
-</svg>
-"""
-
-
 def render_svg() -> str:
-    """SVG version of the same geometry. Uses stroke-dasharray to carve the
-    gap out of an otherwise-full circle, which keeps the source compact and
-    lets the SVG scale crisply at any size browsers will render it at."""
+    """SVG version of the same geometry as the Pillow renderer. Uses an
+    explicit `<path>` arc for the C (the previous stroke-dasharray + rotate
+    approach put the gap in the wrong quadrant) and a plain `<circle>` for
+    the o.
+
+    Coord convention: SVG x-right, y-down. `0°` is 3 o'clock; positive
+    angles go clockwise (matches Pillow's arc()). The C arc spans from
+    +half_gap° (lower-right, just below 3 o'clock) clockwise through 6, 9,
+    12 o'clock to -half_gap° (upper-right). large-arc-flag=1 + sweep-flag=1
+    pick the long-way, clockwise sweep — anything else draws the short
+    sliver instead of the C body."""
+    import math
     canvas = 512
+    cx = cy = canvas / 2
     outer_inset = canvas * OUTER_INSET_PCT
     outer_w = canvas * OUTER_STROKE_PCT
     outer_r = (canvas / 2) - outer_inset
-    circumference = 2 * 3.141592653589793 * outer_r
-    gap_arc = circumference * (OUTER_GAP_DEG / 360)
-    dash = circumference - gap_arc
-    # Rotate so the gap sits on the right (the dash starts at 3 o'clock by
-    # default once we offset by half the gap).
-    rot = 90 - OUTER_GAP_DEG / 2
+
+    half_gap_rad = math.radians(OUTER_GAP_DEG / 2)
+    sx = cx + outer_r * math.cos(half_gap_rad)
+    sy = cy + outer_r * math.sin(half_gap_rad)   # below 3 o'clock
+    ex = cx + outer_r * math.cos(-half_gap_rad)
+    ey = cy + outer_r * math.sin(-half_gap_rad)  # above 3 o'clock
+
     inner_r = canvas * INNER_R_PCT
     inner_w = canvas * INNER_STROKE_PCT
     inner_cx = canvas * INNER_CX_PCT
     inner_cy = canvas * INNER_CY_PCT
-    return SVG_TEMPLATE.format(
-        outer_r=round(outer_r, 1),
-        outer_w=round(outer_w, 1),
-        dash=round(dash, 1),
-        gap_arc=round(gap_arc, 1),
-        rot=round(rot, 1),
-        gap=OUTER_GAP_DEG,
-        inner_cx=round(inner_cx, 1),
-        inner_cy=round(inner_cy, 1),
-        inner_r=round(inner_r, 1),
-        inner_w=round(inner_w, 1),
+
+    return (
+        f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {canvas} {canvas}">\n'
+        f'  <title>Offshore Co.</title>\n'
+        f'  <!-- Outer C: thick navy ring with a {OUTER_GAP_DEG}° opening on the right. -->\n'
+        f'  <path d="M {sx:.2f} {sy:.2f} A {outer_r:.2f} {outer_r:.2f} 0 1 1 {ex:.2f} {ey:.2f}"\n'
+        f'        fill="none" stroke="#1D2D44" stroke-width="{outer_w:.2f}" stroke-linecap="butt"/>\n'
+        f'  <!-- Inner o: ring inside the C. -->\n'
+        f'  <circle cx="{inner_cx:.2f}" cy="{inner_cy:.2f}" r="{inner_r:.2f}"\n'
+        f'          fill="none" stroke="#1D2D44" stroke-width="{inner_w:.2f}"/>\n'
+        f'</svg>\n'
     )
 
 

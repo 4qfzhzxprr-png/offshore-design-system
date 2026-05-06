@@ -40,25 +40,37 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 PIPELINE_ROOT = HERE.parent / "offshores-pipeline"
-PIPELINE_DEST = PIPELINE_ROOT / "public" / "design-system"
 
 
-# Folders inside the canonical that get mirrored 1:1 into the consumer.
-SYNCED_DIRS = ("tokens", "components", "js")
+# Map of source dir (relative to canonical) -> destination dir (relative to
+# pipeline root). Most of the design system mirrors into public/design-system/
+# so it can be linked via <link>/<Script>; icons mirror to /public/icons/
+# so the manifest + apple-touch-icon paths in app/layout.tsx resolve.
+SYNCED_DIRS = {
+    "tokens": Path("public/design-system/tokens"),
+    "components": Path("public/design-system/components"),
+    "js": Path("public/design-system/js"),
+    "icons": Path("public/icons"),
+}
 
 
 def diff_files() -> list[tuple[Path, Path, str]]:
-    """Return (src, dest, status) tuples. Status is 'new' | 'changed' | 'same'."""
+    """Return (src, dest, status) tuples. Status is 'new' | 'changed' | 'same'.
+
+    `generate.py` inside icons/ stays in canonical only — it's the build
+    script for the rasters, not part of the runtime asset set."""
     out: list[tuple[Path, Path, str]] = []
-    for sub in SYNCED_DIRS:
-        src_root = HERE / sub
+    for src_sub, dest_sub in SYNCED_DIRS.items():
+        src_root = HERE / src_sub
         if not src_root.is_dir():
             continue
         for src in sorted(src_root.rglob("*")):
             if not src.is_file():
                 continue
-            rel = src.relative_to(HERE)
-            dest = PIPELINE_DEST / rel
+            if src.name == "generate.py":
+                continue
+            rel = src.relative_to(src_root)
+            dest = PIPELINE_ROOT / dest_sub / rel
             if not dest.exists():
                 out.append((src, dest, "new"))
             elif src.read_bytes() != dest.read_bytes():
@@ -77,8 +89,8 @@ def main() -> int:
     )
     args = parser.parse_args()
 
-    if not PIPELINE_DEST.exists():
-        print(f"!! Pipeline destination missing: {PIPELINE_DEST}", file=sys.stderr)
+    if not PIPELINE_ROOT.exists():
+        print(f"!! Pipeline root missing: {PIPELINE_ROOT}", file=sys.stderr)
         print("   Expected sibling layout: ~/projects/{offshore-design-system,offshores-pipeline}", file=sys.stderr)
         return 2
 
@@ -88,7 +100,7 @@ def main() -> int:
     same = [p for p in plan if p[2] == "same"]
 
     print(f"Canonical:  {HERE}")
-    print(f"Pipeline:   {PIPELINE_DEST}")
+    print(f"Pipeline:   {PIPELINE_ROOT}")
     print()
     print(f"  {len(new):3d} new   files would be copied")
     print(f"  {len(changed):3d} changed files would be overwritten")

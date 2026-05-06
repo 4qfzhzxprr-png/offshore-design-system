@@ -6,6 +6,6 @@
           stroke-dasharray="1186.7 100.1"
           transform="rotate(-76.0 256 256)"/>
   <!-- Inner o: small ring inside the C, upper-right. -->
-  <circle cx="297.0" cy="163.8" r="79.4"
+  <circle cx="256.0" cy="204.8" r="102.4"
           fill="none" stroke="#1D2D44" stroke-width="46.1"/>
 </svg>

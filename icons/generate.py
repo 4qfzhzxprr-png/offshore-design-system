@@ -31,13 +31,13 @@ HERE = Path(__file__).parent
 # proportionally identical. The percentages below were chosen by eye to
 # match the supplied reference logo (a thick-stroked C-roundel with a small
 # o nestled inside its upper-right interior).
-OUTER_STROKE_PCT = 0.135       # outer C stroke width
-OUTER_INSET_PCT = 0.10         # margin from canvas edge to outer C bbox
-OUTER_GAP_DEG = 28             # opening on the right of the C (degrees)
-INNER_R_PCT = 0.20             # inner o ring radius
-INNER_STROKE_PCT = 0.090       # inner o stroke width
-INNER_CX_PCT = 0.50            # inner o center, fraction of canvas width
-INNER_CY_PCT = 0.40            # inner o center, fraction of canvas height
+OUTER_STROKE_PCT = 0.115       # outer C stroke width
+OUTER_INSET_PCT = 0.08         # margin from canvas edge to outer C bbox
+OUTER_GAP_DEG = 50             # opening on the right of the C (degrees)
+INNER_R_PCT = 0.27             # inner o ring radius (substantial — ~55% diameter)
+INNER_STROKE_PCT = 0.115       # inner o stroke width (matches the C)
+INNER_CX_PCT = 0.42            # inner o center, slightly left of canvas center
+INNER_CY_PCT = 0.50            # inner o center, vertically centered
 
 
 def render_icon(size: int, padding_ratio: float = 0.0) -> Image.Image:

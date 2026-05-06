@@ -94,7 +94,11 @@
         border-radius: 999px;
         color: rgba(29, 45, 68, 0.72);
         cursor: pointer;
-        padding: 6px 10px;
+        /* 9px / 12px gives the icon-only mobile target ~40x40 — the pill
+           expands automatically when the label appears at the wider
+           breakpoint below. */
+        padding: 9px 12px;
+        min-width: 40px; min-height: 40px;
         display: inline-flex; align-items: center; justify-content: center;
         gap: 6px;
         font-family: 'Inter', system-ui, sans-serif;

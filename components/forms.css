@@ -88,6 +88,20 @@
   border-color: var(--brass);
 }
 
+/* Mobile: bump form fields to 16px so iOS Safari doesn't auto-zoom on focus.
+   Stays at 14px on tablet+ where desktop information density matters more. */
+@media (max-width: 740px) {
+  .edit-form input[type="text"],
+  .edit-form input[type="number"],
+  .edit-form input[type="email"],
+  .edit-form input[type="url"],
+  .edit-form input[type="search"],
+  .edit-form select,
+  .edit-form textarea {
+    font-size: 16px;
+  }
+}
+
 /* ----- Groups + rows ---------------------------------------------------- */
 
 .edit-form .group {

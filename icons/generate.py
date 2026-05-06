@@ -34,9 +34,9 @@ HERE = Path(__file__).parent
 OUTER_STROKE_PCT = 0.115       # outer C stroke width
 OUTER_INSET_PCT = 0.08         # margin from canvas edge to outer C bbox
 OUTER_GAP_DEG = 50             # opening on the right of the C (degrees)
-INNER_R_PCT = 0.27             # inner o ring radius (substantial — ~55% diameter)
-INNER_STROKE_PCT = 0.115       # inner o stroke width (matches the C)
-INNER_CX_PCT = 0.42            # inner o center, slightly left of canvas center
+INNER_R_PCT = 0.18             # inner o ring radius
+INNER_STROKE_PCT = 0.095       # inner o stroke width (slightly thinner than C)
+INNER_CX_PCT = 0.50            # inner o center, horizontally centered
 INNER_CY_PCT = 0.50            # inner o center, vertically centered
 
 

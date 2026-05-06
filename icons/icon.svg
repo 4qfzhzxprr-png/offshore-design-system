@@ -4,6 +4,6 @@
   <path d="M 450.89 346.88 A 215.04 215.04 0 1 1 450.89 165.12"
         fill="none" stroke="#1D2D44" stroke-width="58.88" stroke-linecap="butt"/>
   <!-- Inner o: ring inside the C. -->
-  <circle cx="215.04" cy="256.00" r="138.24"
-          fill="none" stroke="#1D2D44" stroke-width="58.88"/>
+  <circle cx="256.00" cy="256.00" r="92.16"
+          fill="none" stroke="#1D2D44" stroke-width="48.64"/>
 </svg>

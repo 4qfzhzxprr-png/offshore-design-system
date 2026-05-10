@@ -6,7 +6,8 @@
    The palette is built around a hierarchy of warm cream surfaces against deep
    navy ink. Brass (warm aged brass, the marine-instrument accent) is the only
    accent — used for italic punctuation, eyebrows, and small details.
-   Terracotta is a warm second accent used sparingly for cause-aligned moments.
+   Coral is a warm second accent used sparingly for cause-aligned moments
+   (formerly named --terracotta; the old name is kept as a deprecated alias).
 
    --bone is the primary background. --paper is a slightly warmer secondary
    surface for cards and lifted regions. --sand is a warmer still tertiary
@@ -25,7 +26,7 @@
      --bone → dark navy   (background inverts)
      --navy → cream       (ink inverts)
      --navy-deep stays    (deep sections keep their character)
-     --brass / --terracotta unchanged (work on both)
+     --brass / --coral unchanged (work on both)
 ============================================================================= */
 
 :root {
@@ -48,11 +49,20 @@
      (see tokens/dark.css + js/theme.js). */
   --brass-deep:  #6B5224;
 
-  --terracotta:  #c97650;
+  --coral:       #c97650;
   /* Same brand-vs-AA pattern as brass-deep — used for .btn.danger text and
-     inline terracotta warnings. ~5:1 on bone. Dark mode override flips to a
+     inline coral warnings. ~5:1 on bone. Dark mode override flips to a
      lighter shade so contrast holds against dark surfaces too. */
-  --terracotta-deep: #99502E;
+  --coral-deep:  #99502E;
+
+  /* DEPRECATED ALIASES — use --coral / --coral-deep in new code.
+     Renamed in v0.2 (decision 05) to align naming with the brand's
+     ocean-preservation mission (coral bleaching is the cause story).
+     Old names still resolve via var() so external consumers don't break;
+     remove these aliases after a release once the storefront and pipeline
+     have migrated. */
+  --terracotta:      var(--coral);
+  --terracotta-deep: var(--coral-deep);
 
   /* INK SCALE — opacity ramp on navy */
   --ink:           var(--navy);

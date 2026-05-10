@@ -190,13 +190,13 @@
 
 .btn.danger {
   background: transparent;
-  /* Deeper terracotta for AA contrast — original on bone is 3.15:1. */
-  color: var(--terracotta-deep, var(--terracotta));
+  /* Deeper coral for AA contrast — original on bone is 3.15:1. */
+  color: var(--coral-deep, var(--coral));
   border-color: var(--ink-hairline);
 }
 .btn.danger:hover {
   background: rgba(201, 118, 80, 0.08);
-  border-color: var(--terracotta);
+  border-color: var(--coral);
 }
 
 /* ----- Variant-row pattern — repeating sub-records inside a form ------- */
@@ -256,10 +256,10 @@
   border-color: var(--ink-quiet);
 }
 .variant-row-actions button.danger {
-  color: var(--terracotta);
+  color: var(--coral);
 }
 .variant-row-actions button.danger:hover {
-  border-color: var(--terracotta);
+  border-color: var(--coral);
 }
 
 .variant-add-btn {

@@ -15,8 +15,9 @@ The atoms of the Offshore design system. Everything else is built from these.
 | `--brass` | `#A78546` | The accent. Italic-brass display punctuation (`em.brass` in headlines), the brass dot in `.status` pills, focus rings. **The only color besides navy/cream that ever shows up at full saturation.** Sub-AA contrast on bone (~2.99:1) is an intentional brand exception for the headline signature — for small UI text use `--brass-deep`. |
 | `--brass-deep` | `#6B5224` | AA-compliant brass for small-UI text — `.eyebrow`, `.status.featured` text, `.btn.brass` background, "library" chips, status pills. ~6.2:1 on bone. **Dark mode redefines this to a LIGHTER brass (`#D0B27E`)** so contrast holds against dark surfaces too. |
 | `--brass-soft` | `rgba(167, 133, 70, 0.18)` | Brass tinted background — used on `.status.featured` pills. |
-| `--terracotta` | `#c97650` | Warm cause-aligned accent. Used sparingly for visual signal — `.btn.danger` border, "removal" / "rejected" indicators, the Bleached Edition narrative. Use `--terracotta-deep` for any small text usage. |
-| `--terracotta-deep` | `#99502E` | AA-compliant terracotta for `.btn.danger` text and inline warnings. ~5:1 on bone. **Dark mode redefines this to a LIGHTER warm (`#d68966`).** |
+| `--coral` | `#c97650` | Warm cause-aligned accent. Used sparingly for visual signal — `.btn.danger` border, "removal" / "rejected" indicators, the Bleached Edition narrative. Use `--coral-deep` for any small text usage. |
+| `--coral-deep` | `#99502E` | AA-compliant coral for `.btn.danger` text and inline warnings. ~5:1 on bone. **Dark mode redefines this to a LIGHTER warm (`#d68966`).** |
+| `--terracotta`, `--terracotta-deep` | _(aliases of `--coral`, `--coral-deep`)_ | **Deprecated** in v0.2 — see `tokens/colors.css`. The old names still resolve via `var()` so external consumers don't break. Migrate to `--coral` / `--coral-deep` in new code; aliases will be removed in a future release. |
 
 ## Ink scale
 

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 512 512"
+     fill="none"
+     stroke="#A78546">
+  <title>Offshore Co. mark — brass</title>
+  <desc>The Offshore Co. mark with stroke color baked in to aged brass (#A78546). Use for foil stamps on navy and kraft, embroidery brass-thread on apparel, and the brass-on-navy primary lockup. The canonical source with currentColor is mark/mark.svg.</desc>
+  <path d="M 450.89 346.88 A 215.04 215.04 0 1 1 450.89 165.12"
+        stroke-width="58.88" stroke-linecap="butt"/>
+  <circle cx="256" cy="256" r="92.16" stroke-width="48.64"/>
+</svg>

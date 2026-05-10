@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 512 512"
+     fill="none"
+     stroke="currentColor">
+  <title>Offshore Co. mark</title>
+  <desc>The Offshore Co. monogram. An outer C with a 50-degree opening on the right side, containing an inner o ring at the center. Reads as the O of Offshore, the c of Co., the copyright glyph for a Co., a porthole, and a dive-watch bezel — four valid readings in one ownable shape. ViewBox is 512 by 512; center is at (256, 256). Outer C has radius 215.04 and stroke 58.88; inner o has radius 92.16 and stroke 48.64. Stroke uses currentColor so the mark inherits color from its parent.</desc>
+  <path d="M 450.89 346.88 A 215.04 215.04 0 1 1 450.89 165.12"
+        stroke-width="58.88" stroke-linecap="butt"/>
+  <circle cx="256" cy="256" r="92.16" stroke-width="48.64"/>
+</svg>

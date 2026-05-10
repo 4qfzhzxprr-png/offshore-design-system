@@ -57,6 +57,7 @@ SYNCED_DIRS = {
     "components": Path("public/design-system/components"),
     "js": Path("public/design-system/js"),
     "patterns": Path("public/design-system/patterns"),
+    "mark": Path("public/design-system/mark"),
     "icons": Path("public/icons"),
 }
 

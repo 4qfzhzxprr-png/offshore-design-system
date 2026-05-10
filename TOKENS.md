@@ -45,8 +45,8 @@ Same idea, flipped — opacity ramp on `--bone` for use on dark surfaces.
 
 | Token | Stack | Use |
 |---|---|---|
-| `--serif` | Fraunces → Iowan Old Style → Georgia | Editorial display. Headlines, statement quotes. |
-| `--sans` | Inter → -apple-system → Segoe UI | Everything functional. Body, labels, button text. |
+| `--serif` | Cormorant Garamond → Iowan Old Style → Georgia | Editorial display. Headlines, statement quotes. |
+| `--sans` | DM Sans → -apple-system → Segoe UI | Everything functional. Body, labels, button text. |
 | `--mono` | Geist Mono → SF Mono → Menlo → Consolas | Slugs, IDs, technical readouts. |
 
 | Token | Value | Use |

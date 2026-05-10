@@ -4,7 +4,7 @@ The thing that makes everything feel like Offshore — beyond the palette — is
 
 ## The italic-brass rule
 
-The most important rule. **Italic Fraunces in `--brass` color, used as punctuation.**
+The most important rule. **Italic Cormorant Garamond in `--brass` color, used as punctuation.**
 
 It's how a headline gets its emphasis. It's how a stat block earns its texture. It's how copy lands without bolding or color stunts. It runs everywhere on offshore.co and any new project that uses this design system should run it the same way.
 
@@ -92,7 +92,7 @@ Cause callouts always answer: who, how much, since when, where to read the repor
 
 These are the things that make a project stop feeling like Offshore:
 
-- **Bold sans-serif headlines.** Use Fraunces for all editorial display. Inter only for functional text.
+- **Bold sans-serif headlines.** Use Cormorant Garamond for all editorial display. DM Sans only for functional text.
 - **All-caps body copy.** Caps are reserved for eyebrows, microcaps, and small UI labels — never sentences.
 - **Hex colors in markup.** Use tokens. If you need a color that isn't in the palette, propose adding it to `tokens/colors.css` first.
 - **Drop shadows with hard edges.** Always use the `--shadow-card / --shadow-float` tokens. Custom shadows must use the same soft fall-off.

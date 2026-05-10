@@ -48,7 +48,7 @@
   line-height: 1;
   letter-spacing: var(--display-track);
   color: var(--navy);
-  font-feature-settings: 'ss01';
+  font-feature-settings: 'tnum';
 }
 .stat-value em {
   font-style: italic;

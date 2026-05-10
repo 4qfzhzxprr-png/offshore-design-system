@@ -101,7 +101,7 @@
         min-width: 40px; min-height: 40px;
         display: inline-flex; align-items: center; justify-content: center;
         gap: 6px;
-        font-family: 'Inter', system-ui, sans-serif;
+        font-family: 'DM Sans', system-ui, sans-serif;
         font-size: 11px; font-weight: 500;
         text-transform: uppercase; letter-spacing: 0.14em;
         transition: color 200ms cubic-bezier(0.23,1,0.32,1),

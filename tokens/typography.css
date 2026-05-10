@@ -3,26 +3,25 @@
    -----------------------------------------------------------------------------
    Two families do all the work:
 
-     --serif (Fraunces) — editorial display. Headlines, statement quotes,
-       single italic words used as punctuation. Weight 300 for the largest
-       hero displays; 400 for everything else. Italic 400 in --brass is the
-       brand's signature design move (see VOICE.md).
+     --serif (Cormorant Garamond) — editorial display. Headlines, statement
+       quotes, single italic words used as punctuation. Weight 300 for the
+       largest hero displays; 400 for everything else. Italic 400 in --brass
+       is the brand's signature design move (see VOICE.md).
 
-     --sans (Inter) — everything functional. Body, eyebrows, labels, button
+     --sans (DM Sans) — everything functional. Body, eyebrows, labels, button
        text, micro-caps, table cells. Weights 400/500/600.
 
      --mono (Geist Mono / system fallback) — code, slugs, IDs, technical
        readouts. Use sparingly.
 
-   Font loading: link Fraunces and Inter from Google Fonts in <head>:
+   Font loading: link Cormorant Garamond and DM Sans from Google Fonts in <head>:
 
      <link rel="preconnect" href="https://fonts.googleapis.com">
      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
      <link rel="stylesheet" href="
        https://fonts.googleapis.com/css2?
-       family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;
-                                       0,9..144,600;1,9..144,300;1,9..144,400&
-       family=Inter:wght@300;400;500;600&
+       family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&
+       family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&
        display=swap">
 
    (URL line-broken here for reading — must be one line in the actual link.)
@@ -30,12 +29,12 @@
 
 :root {
   /* FAMILIES */
-  --serif: 'Fraunces', 'Iowan Old Style', Georgia, serif;
-  --sans:  'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --serif: 'Cormorant Garamond', 'Iowan Old Style', Georgia, serif;
+  --sans:  'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --mono:  'Geist Mono', ui-monospace, 'SF Mono', 'Menlo', 'Consolas', monospace;
 
   /* TRACKING — letter-spacing values used across the system */
-  --display-track:  -0.03em;   /* large display serif (negative tracking) */
+  --display-track:  -0.02em;   /* large display serif (negative tracking, tuned for Cormorant) */
   --caps-track:     0.22em;    /* uppercase eyebrows + microcaps */
   --caps-tight:     0.14em;    /* uppercase nav + small UI */
 }
@@ -50,7 +49,6 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
-  font-feature-settings: 'ss01', 'cv11';
 }
 
 /* ----- Editorial display class — apply to large headlines ----------------- */
@@ -60,7 +58,7 @@ body {
   font-weight: 400;
   letter-spacing: var(--display-track);
   line-height: 0.98;
-  font-feature-settings: 'ss01', 'ss02';
+  font-feature-settings: 'kern', 'dlig';
 }
 
 /* ----- THE SIGNATURE — italic-brass punctuation -------------------------- */

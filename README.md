@@ -32,6 +32,13 @@ patterns/
                      suggesting bathymetric depth, anchored bottom-center
   README.md          pattern usage guide (web, print, merch)
 
+mark/
+  mark.svg                  canonical mark — currentColor stroke
+  mark-navy.svg             baked navy for img / background / vendor delivery
+  mark-brass.svg            baked brass for foil and brass-on-navy lockups
+  lockup-horizontal.svg     mark + wordmark side-by-side
+  README.md                 construction, clear space, minimum sizes, misuse
+
 preview/
   index.html         every component on one page — open this first
 
@@ -86,11 +93,13 @@ Before writing a single line of CSS in your new project, open `preview/index.htm
 - **No React/Vue/Solid components.** The system is at the markup + CSS level. Wrap pieces in whatever UI framework your project uses.
 - **No icons.** Bring your own. Nav and button icons in offshore are inline SVG — see `js/theme.js` for the sun/moon SVG strings as a reference.
 
-## Brand voice and materials
+## Brand voice, materials, and mark
 
 Read `VOICE.md`. Specifically the italic-brass rule. **It's the single most important thing in this repo** — copy the components verbatim and ignore VOICE.md, and you'll have a project that LOOKS like Offshore but doesn't feel like it.
 
 Then read `MATERIALS.md`. It governs how the brand lives off-screen — watch case, strap, packaging, paperwork, apparel. The rule there is *patina is the proof*: specify materials that age into the brand rather than fight aging. Critical for merchandise and packaging decisions, less so for purely digital surfaces, but worth a pass even for web work since it sets the tone the digital system should match.
+
+Then read `mark/README.md`. It's the construction spec for the C-in-O monogram — anatomy, color variants, clear space, minimum sizes by medium, lockup geometry, and the misuse rules. Required reading before producing anything that puts the mark on a physical surface (packaging, merch, paperwork) or anywhere the mark gets reproduced at a non-standard size.
 
 ## Keeping consumers in sync
 

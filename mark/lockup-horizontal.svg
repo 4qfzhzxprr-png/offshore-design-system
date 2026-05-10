@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 1760 320"
+     fill="none"
+     stroke="currentColor">
+  <title>Offshore Co. — horizontal lockup</title>
+  <desc>The primary horizontal lockup: the mark on the left at 256x256, the wordmark OFFSHORE CO. in DM Sans 500 tracked uppercase to the right, baseline aligned so cap-height center matches mark center. Both elements use currentColor. The font-size is 140 and letter-spacing is 30 user units (approximately 0.21em, between the brand's --caps-track and --caps-tight values). ViewBox is 1760 by 320 with 32 unit padding. For high-volume print delivery, open this file in Figma or Illustrator and convert the text element to outlines before exporting — vendor workflows can't rely on the DM Sans font being installed at the production house.</desc>
+
+  <g transform="translate(32 32) scale(0.5)">
+    <path d="M 450.89 346.88 A 215.04 215.04 0 1 1 450.89 165.12"
+          stroke-width="58.88" stroke-linecap="butt"/>
+    <circle cx="256" cy="256" r="92.16" stroke-width="48.64"/>
+  </g>
+
+  <text x="368" y="210"
+        font-family="'DM Sans', system-ui, sans-serif"
+        font-weight="500"
+        font-size="140"
+        letter-spacing="30"
+        fill="currentColor"
+        stroke="none">OFFSHORE CO.</text>
+</svg>

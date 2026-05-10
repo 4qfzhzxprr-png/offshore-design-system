@@ -22,9 +22,15 @@ components/
   modals.css         .modal-scrim + .modal shell
   empty-loader.css   .empty / .loader / .skeleton
   nav.css            .nav-pill floating glass nav
+  pattern.css        .pattern-depth wrapper for inline brand patterns
 
 js/
   theme.js           light/dark toggle, no-flash, auto-injecting
+
+patterns/
+  depth-contours.svg the brand's primary pattern — concentric arcs
+                     suggesting bathymetric depth, anchored bottom-center
+  README.md          pattern usage guide (web, print, merch)
 
 preview/
   index.html         every component on one page — open this first

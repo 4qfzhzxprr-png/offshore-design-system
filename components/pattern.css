@@ -1,0 +1,57 @@
+/* =============================================================================
+   Component — Pattern (the brand pattern system)
+   -----------------------------------------------------------------------------
+   Wraps inline SVG pattern assets and controls their color via currentColor.
+
+   Usage:
+
+     <div class="pattern-depth on-navy" aria-hidden="true">
+       <svg>...patterns/depth-contours.svg contents...</svg>
+     </div>
+
+   Modifiers:
+
+     .on-navy         brass stroke on dark navy surface (default if unset)
+     .on-bone         brass-deep stroke on bone surface
+     .on-paper        brass-deep stroke on paper surface
+     .compact         max-width 280px, centered (empty-state scale)
+     .full            max-width none (hero / banner scale, default)
+
+   For <img> or background-image use, generate color-baked SVG variants;
+   see patterns/README.md.
+
+   Decorative by default — wrap the parent with aria-hidden="true". When the
+   pattern is the centerpiece of an empty state, omit aria-hidden so the
+   SVG's <title> is announced.
+============================================================================= */
+
+.pattern-depth {
+  display: block;
+  width: 100%;
+  height: auto;
+  color: var(--brass);
+}
+
+.pattern-depth > svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.pattern-depth.on-navy {
+  color: var(--brass);
+}
+
+.pattern-depth.on-bone,
+.pattern-depth.on-paper {
+  color: var(--brass-deep);
+}
+
+.pattern-depth.compact {
+  max-width: 280px;
+  margin-inline: auto;
+}
+
+.pattern-depth.full {
+  max-width: none;
+}

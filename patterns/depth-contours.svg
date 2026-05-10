@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 400 200"
+     preserveAspectRatio="xMidYMax slice"
+     fill="none"
+     stroke="currentColor">
+  <title>Offshore Co. — depth contours</title>
+  <desc>Seven concentric arcs anchored at bottom-center, suggesting bathymetric depth contours. The brand's primary pattern, used on dark hero backdrops, packaging interiors, paperwork footers, and empty states. Stroke uses currentColor so the pattern inherits color from its parent.</desc>
+  <g stroke-width="1" stroke-linecap="round">
+    <path d="M 0 200 A 200 200 0 0 0 400 200" opacity="0.78"/>
+    <path d="M 30 200 A 170 170 0 0 0 370 200" opacity="0.64"/>
+    <path d="M 60 200 A 140 140 0 0 0 340 200" opacity="0.52"/>
+    <path d="M 90 200 A 110 110 0 0 0 310 200" opacity="0.40"/>
+    <path d="M 120 200 A 80 80 0 0 0 280 200" opacity="0.30"/>
+    <path d="M 150 200 A 50 50 0 0 0 250 200" opacity="0.20"/>
+    <path d="M 180 200 A 20 20 0 0 0 220 200" opacity="0.12"/>
+  </g>
+</svg>

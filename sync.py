@@ -56,6 +56,7 @@ SYNCED_DIRS = {
     "tokens": Path("public/design-system/tokens"),
     "components": Path("public/design-system/components"),
     "js": Path("public/design-system/js"),
+    "patterns": Path("public/design-system/patterns"),
     "icons": Path("public/icons"),
 }
 
@@ -64,8 +65,9 @@ def diff_files_for(consumer: Path) -> list[tuple[Path, Path, str]]:
     """Return (src, dest, status) tuples for one consumer.
     Status is 'new' | 'changed' | 'same'.
 
-    `generate.py` inside icons/ stays in canonical only — it's the build
-    script for the rasters, not part of the runtime asset set."""
+    Files excluded from sync: `generate.py` inside icons/ (it's the build
+    script for the rasters, not a runtime asset), and any `README.md` in
+    a synced directory (docs, not runtime — e.g. patterns/README.md)."""
     out: list[tuple[Path, Path, str]] = []
     for src_sub, dest_sub in SYNCED_DIRS.items():
         src_root = HERE / src_sub
@@ -74,7 +76,7 @@ def diff_files_for(consumer: Path) -> list[tuple[Path, Path, str]]:
         for src in sorted(src_root.rglob("*")):
             if not src.is_file():
                 continue
-            if src.name == "generate.py":
+            if src.name in {"generate.py", "README.md"}:
                 continue
             rel = src.relative_to(src_root)
             dest = consumer / dest_sub / rel

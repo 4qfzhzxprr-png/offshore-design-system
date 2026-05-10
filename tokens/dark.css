@@ -37,9 +37,9 @@ html[data-theme="dark"] {
 
   /* Dark-mode accent overrides — both deep variants need to be LIGHTER
      (not darker) than their bases to clear contrast against dark surfaces.
-     The light-mode --brass-deep #455e92 is dark-blue and would fail in dark
-     mode; here we go the other direction. */
-  --brass-deep:      #a3b5cc;
+     The light-mode --brass-deep #6B5224 is deep aged brass and would fail
+     in dark mode; here we lift to pale antique brass. */
+  --brass-deep:      #D0B27E;
   --terracotta-deep: #d68966;
 
   --bone-soft:      rgba(13, 19, 33, 0.78);

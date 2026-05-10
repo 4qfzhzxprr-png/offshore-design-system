@@ -4,9 +4,9 @@
    Six surface colors + one accent + one warm.
 
    The palette is built around a hierarchy of warm cream surfaces against deep
-   navy ink. Brass (a desaturated light blue) is the only accent — used for
-   italic punctuation, eyebrows, and small details. Terracotta is a warm
-   second accent used sparingly for cause-aligned moments.
+   navy ink. Brass (warm aged brass, the marine-instrument accent) is the only
+   accent — used for italic punctuation, eyebrows, and small details.
+   Terracotta is a warm second accent used sparingly for cause-aligned moments.
 
    --bone is the primary background. --paper is a slightly warmer secondary
    surface for cards and lifted regions. --sand is a warmer still tertiary
@@ -38,15 +38,15 @@
   --bone:        #F0EBD8;
   --paper:       #FAF7E8;
 
-  --brass:       #748CAB;
-  --brass-soft:  rgba(116, 140, 171, 0.18);
+  --brass:       #A78546;
+  --brass-soft:  rgba(167, 133, 70, 0.18);
   /* Deeper brass for small-UI text (eyebrows, status pill text, ghost links).
-     The original --brass at 2.89:1 on bone fails WCAG AA for small text;
-     --brass-deep is ~5:1. Original --brass is preserved for display-headline
+     The display --brass at 2.99:1 on bone fails WCAG AA for small text;
+     --brass-deep is ~6.2:1. Display --brass is preserved for display-headline
      em.brass (the brand signature) where contrast is intentionally a brand
-     exception. Dark mode redefines --brass-deep to a LIGHTER blue
+     exception. Dark mode redefines --brass-deep to a LIGHTER brass
      (see tokens/dark.css + js/theme.js). */
-  --brass-deep:  #455E92;
+  --brass-deep:  #6B5224;
 
   --terracotta:  #c97650;
   /* Same brand-vs-AA pattern as brass-deep — used for .btn.danger text and

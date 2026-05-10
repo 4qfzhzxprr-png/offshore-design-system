@@ -12,9 +12,9 @@ The atoms of the Offshore design system. Everything else is built from these.
 | `--sand` | `#E5DEC4` | Warmest cream. Tertiary background, image placeholder, frame liner. |
 | `--bone` | `#F0EBD8` | Primary background. The default canvas color. |
 | `--paper` | `#FAF7E8` | Lightest cream. Lifted surfaces — cards, inputs, panels. |
-| `--brass` | `#748CAB` | The accent. Italic-brass display punctuation (`em.brass` in headlines), the brass dot in `.status` pills, focus rings. **The only color besides navy/cream that ever shows up at full saturation.** Sub-AA contrast on bone (~2.89:1) is an intentional brand exception for the headline signature — for small UI text use `--brass-deep`. |
-| `--brass-deep` | `#455E92` | AA-compliant brass for small-UI text — `.eyebrow`, `.status.featured` text, `.btn.brass` background, "library" chips, status pills. ~5:1 on bone. **Dark mode redefines this to a LIGHTER blue (`#a3b5cc`)** so contrast holds against dark surfaces too. |
-| `--brass-soft` | `rgba(116, 140, 171, 0.18)` | Brass tinted background — used on `.status.featured` pills. |
+| `--brass` | `#A78546` | The accent. Italic-brass display punctuation (`em.brass` in headlines), the brass dot in `.status` pills, focus rings. **The only color besides navy/cream that ever shows up at full saturation.** Sub-AA contrast on bone (~2.99:1) is an intentional brand exception for the headline signature — for small UI text use `--brass-deep`. |
+| `--brass-deep` | `#6B5224` | AA-compliant brass for small-UI text — `.eyebrow`, `.status.featured` text, `.btn.brass` background, "library" chips, status pills. ~6.2:1 on bone. **Dark mode redefines this to a LIGHTER brass (`#D0B27E`)** so contrast holds against dark surfaces too. |
+| `--brass-soft` | `rgba(167, 133, 70, 0.18)` | Brass tinted background — used on `.status.featured` pills. |
 | `--terracotta` | `#c97650` | Warm cause-aligned accent. Used sparingly for visual signal — `.btn.danger` border, "removal" / "rejected" indicators, the Bleached Edition narrative. Use `--terracotta-deep` for any small text usage. |
 | `--terracotta-deep` | `#99502E` | AA-compliant terracotta for `.btn.danger` text and inline warnings. ~5:1 on bone. **Dark mode redefines this to a LIGHTER warm (`#d68966`).** |
 

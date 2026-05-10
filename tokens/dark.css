@@ -10,7 +10,7 @@
 
    The flip strategy: --navy and --bone swap (ink and bg invert). --navy-deep
    stays the same hex so deep sections retain their "deep" character. --brass
-   and --terracotta are unchanged — they work on both.
+   and --coral are unchanged — they work on both.
 
    Sections that explicitly use --navy-deep as background + --bone as text
    color need cream-text overrides (since --bone became dark navy in dark
@@ -25,7 +25,7 @@ html[data-theme="dark"] {
   --paper:       #1D2D44;            /* lifted surfaces (cards/inputs) */
   --navy-rich:   #748CAB;            /* intermediate accent stays light blue */
   /* --navy-deep stays #0D1321 — deep sections keep their "deep" character */
-  /* --brass + --terracotta unchanged — they work on both */
+  /* --brass + --coral unchanged — they work on both */
 
   --ink:           var(--navy);
   --ink-soft:      rgba(240, 235, 216, 0.72);
@@ -40,7 +40,11 @@ html[data-theme="dark"] {
      The light-mode --brass-deep #6B5224 is deep aged brass and would fail
      in dark mode; here we lift to pale antique brass. */
   --brass-deep:      #D0B27E;
-  --terracotta-deep: #d68966;
+  --coral-deep:      #d68966;
+  /* --terracotta-deep is a deprecated alias of --coral-deep (see colors.css).
+     The light-mode :root alias chains through this override automatically
+     because var() is resolved at use-time, so no explicit dark redeclaration
+     of --terracotta-deep is needed. */
 
   --bone-soft:      rgba(13, 19, 33, 0.78);
   --bone-faint:     rgba(13, 19, 33, 0.55);

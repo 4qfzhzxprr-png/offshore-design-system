@@ -69,7 +69,10 @@
            surfaces. The light-mode --brass-deep #6B5224 is deep aged brass
            and would fail in dark mode; here we lift to pale antique brass. */
         --brass-deep:      #D0B27E;
-        --terracotta-deep: #d68966;
+        --coral-deep:      #d68966;
+        /* --terracotta-deep is a deprecated alias chaining through --coral-deep
+           via the light-mode :root declaration; no explicit dark override is
+           needed (see tokens/colors.css and tokens/dark.css). */
 
         --bone-soft:      rgba(13, 19, 33, 0.78);
         --bone-faint:     rgba(13, 19, 33, 0.55);

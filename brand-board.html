@@ -1,0 +1,4012 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Offshore Co. — Brand Book · Volume I</title>
+<meta name="description" content="The Offshore Co. brand system, set in nine spreads. Volume I.">
+<meta name="theme-color" content="#1D2D44">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   Offshore Co. — Brand Book · Volume I
+   Self-contained. Sibling to preview/index.html in role:
+   preview/ shows components for technical reference,
+   brand-board.html shows the brand identity for presentation.
+   ============================================================ */
+
+:root {
+  /* Locked palette — matches tokens/colors.css */
+  --navy: #1D2D44;
+  --navy-deep: #0D1321;
+  --navy-rich: #3E5C76;
+  --sand: #E5DEC4;
+  --bone: #F0EBD8;
+  --paper: #FAF7E8;
+  --brass: #A78546;
+  --brass-deep: #6B5224;
+  --brass-soft: rgba(167, 133, 70, 0.18);
+  --coral: #c97650;
+  --coral-deep: #99502E;
+  --kraft: #B8956A;
+  --kraft-deep: #8B7355;
+
+  /* Performance tier extensions (Chapter II)
+     Steel introduces a third color family that doesn't exist in the
+     parent line — instrument body, edges, dial backgrounds. */
+  --steel: #8B9AAB;
+  --steel-deep: #4A5868;
+  --steel-soft: rgba(139, 154, 171, 0.18);
+
+  /* Type — matches tokens/typography.css */
+  --serif: 'Cormorant Garamond', 'Iowan Old Style', 'Palatino Linotype', Georgia, serif;
+  --sans: 'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --mono: 'DM Mono', 'SF Mono', 'Roboto Mono', Menlo, monospace;
+
+  /* Spread proportions
+     Above 1100px viewport, spreads target 17:12 as a MINIMUM aspect via
+     min-height, but content that needs more room gets it (overflow: visible).
+     Below 1100px, aspect ratio is dropped entirely — spreads become
+     content-driven editorial sections.
+  */
+  --spread-pad: clamp(24px, 4vw, 56px);
+  --spread-min-h: calc((100vw - clamp(32px, 6vw, 64px)) * (12 / 17));
+  --spread-max-h: calc(1360px * (12 / 17));
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: #1a1a1a;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  margin: 0;
+  padding: clamp(24px, 4vw, 56px) clamp(16px, 3vw, 32px);
+  font-family: var(--serif);
+  color: var(--navy);
+  background: #1a1a1a;
+  min-height: 100vh;
+}
+
+/* ============================================================
+   Spread container — every spread is one of these.
+
+   Three breakpoints:
+   - Wide (≥1100px): targets 17:12 as a min-height, grows taller if
+     content demands. overflow: visible — nothing clips.
+   - Mid (640–1099px): content-driven height, comfortable padding.
+   - Narrow (<640px): content-driven, tighter padding.
+
+   The spread__body normalizes inner padding so every spread's content
+   region starts and ends in the same place regardless of viewport.
+   ============================================================ */
+
+.spread {
+  width: 100%;
+  max-width: 1360px;
+  margin: 0 auto clamp(32px, 4vw, 56px);
+  background: var(--bone);
+  position: relative;
+  overflow: visible;
+  border-radius: 4px;
+  box-shadow: 0 30px 80px -20px rgba(0, 0, 0, 0.45), 0 8px 24px -10px rgba(0, 0, 0, 0.30);
+  display: flex;
+  flex-direction: column;
+  padding: clamp(56px, 6vw, 76px) var(--spread-pad);
+}
+
+@media (min-width: 1100px) {
+  .spread {
+    min-height: min(var(--spread-min-h), var(--spread-max-h));
+  }
+}
+
+/* Top metadata strip — now in normal flow at the top of the spread */
+.spread__topbar {
+  position: absolute;
+  top: clamp(20px, 2.5vw, 32px);
+  left: var(--spread-pad);
+  right: var(--spread-pad);
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  font-family: var(--mono);
+  font-size: clamp(8px, 0.8vw, 10.5px);
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  color: var(--brass-deep);
+  text-transform: uppercase;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.spread__topbar span {
+  white-space: nowrap;
+}
+
+@media (max-width: 640px) {
+  .spread__topbar {
+    font-size: 8px;
+    letter-spacing: 0.15em;
+  }
+  .spread__topbar span {
+    white-space: normal;
+  }
+}
+
+/* Bottom metadata strip — section label + page number */
+.spread__footer-label,
+.spread__footer-page {
+  position: absolute;
+  bottom: clamp(20px, 2.5vw, 32px);
+  font-family: var(--mono);
+  font-size: clamp(8px, 0.8vw, 10.5px);
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  color: var(--brass-deep);
+  text-transform: uppercase;
+  z-index: 2;
+}
+
+.spread__footer-label { left: var(--spread-pad); }
+.spread__footer-page { right: var(--spread-pad); }
+
+/* Main content area — flex child that grows between the bars.
+   The bars are absolute-positioned on top; the body's padding clears
+   them so content never collides. */
+.spread__body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  width: 100%;
+}
+
+.spread__title {
+  font-family: var(--serif);
+  font-size: clamp(22px, 2.4vw, 32px);
+  font-weight: 500;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: var(--navy);
+  margin: 0;
+}
+
+.spread__title em {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--brass-deep);
+}
+
+.spread__title-row {
+  margin-bottom: clamp(12px, 1.5vw, 18px);
+  padding-bottom: clamp(8px, 1vw, 14px);
+  border-bottom: 1px solid rgba(107, 82, 36, 0.22);
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 24px;
+}
+
+.spread__title-meta {
+  font-family: var(--mono);
+  font-size: clamp(8px, 0.78vw, 10.5px);
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  color: var(--brass-deep);
+  text-transform: uppercase;
+  flex-shrink: 0;
+}
+
+/* ============================================================
+   Mark — reused everywhere
+   ============================================================ */
+
+.mark {
+  display: block;
+  fill: none;
+  stroke: currentColor;
+}
+
+.mark path,
+.mark circle {
+  stroke: currentColor;
+}
+
+/* ============================================================
+   Generic image slot — colored fallback, photograph overlays
+   ============================================================ */
+
+.photo-slot {
+  position: relative;
+  overflow: hidden;
+  background-color: var(--photo-fallback, var(--kraft-deep));
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.photo-slot__caption {
+  position: relative;
+  z-index: 1;
+  font-family: var(--mono);
+  font-size: clamp(7px, 0.7vw, 9.5px);
+  font-weight: 500;
+  letter-spacing: 0.20em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 2px;
+  border: 1px solid var(--photo-caption-border, rgba(240, 235, 216, 0.30));
+  color: var(--photo-caption-color, var(--bone));
+  opacity: 0.65;
+  text-align: center;
+}
+
+.photo-slot::after {
+  /* Subtle gradient overlay to give fallback blocks some life */
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--photo-gradient, linear-gradient(135deg, rgba(255,255,255,0.10), transparent 60%));
+  pointer-events: none;
+}
+
+/* When the .photo-slot has a background-image set inline,
+   hide the caption — the photograph is the content. */
+.photo-slot[style*="background-image"] .photo-slot__caption {
+  display: none;
+}
+
+.photo-slot[style*="background-image"]::after {
+  /* Hide the artificial gradient when a real photo is present. */
+  display: none;
+}
+
+/* ============================================================
+   Spread 01 — Cover
+   ============================================================ */
+
+.cover {
+  background: var(--bone);
+  justify-content: center;
+}
+
+.cover .spread__topbar {
+  /* Already absolute from base styles. */
+}
+
+.cover__inner {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+  max-width: 520px;
+  margin: 0 auto;
+  padding: clamp(16px, 3vw, 32px) 0;
+}
+
+.cover__mark {
+  width: clamp(80px, 9vw, 120px);
+  height: clamp(80px, 9vw, 120px);
+  margin: 0 auto;
+  color: var(--navy);
+}
+
+.cover__wordmark {
+  margin-top: clamp(20px, 2.5vw, 32px);
+  font-family: var(--sans);
+  font-size: clamp(14px, 1.5vw, 20px);
+  font-weight: 500;
+  letter-spacing: 0.30em;
+  padding-left: 0.30em;
+  color: var(--navy);
+}
+
+.cover__rule {
+  margin: clamp(18px, 2vw, 28px) auto 0;
+  width: clamp(40px, 4.5vw, 64px);
+  height: 1px;
+  background: var(--brass-deep);
+  opacity: 0.5;
+}
+
+.cover__tagline {
+  margin-top: clamp(18px, 2vw, 28px);
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(16px, 1.7vw, 22px);
+  font-weight: 400;
+  color: var(--navy);
+  opacity: 0.82;
+}
+
+.cover__tagline em {
+  font-style: italic;
+  color: var(--brass-deep);
+}
+
+/* Bottom-bleed depth-contours pattern on the cover */
+.cover__pattern {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 36%;
+  color: var(--brass);
+  pointer-events: none;
+}
+
+/* ============================================================
+   Spread 02 — The Mark
+   ============================================================ */
+
+.mark-spread__grid {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr auto;
+  gap: clamp(20px, 2.5vw, 32px) clamp(28px, 3.5vw, 44px);
+  margin-top: clamp(8px, 1vw, 14px);
+}
+
+.mark-spread__hero {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mark-spread__hero svg {
+  width: clamp(140px, 16vw, 220px);
+  height: clamp(140px, 16vw, 220px);
+  color: var(--navy);
+}
+
+.mark-spread__copy {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.mark-spread__copy-title {
+  font-family: var(--serif);
+  font-size: clamp(22px, 2.5vw, 32px);
+  font-weight: 500;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  color: var(--navy);
+}
+
+.mark-spread__copy-title em {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--brass-deep);
+}
+
+.mark-spread__copy-body {
+  margin-top: clamp(12px, 1.4vw, 18px);
+  font-family: var(--sans);
+  font-size: clamp(11px, 1.05vw, 13px);
+  line-height: 1.55;
+  color: var(--navy);
+  opacity: 0.78;
+}
+
+.mark-spread__copy-body em {
+  font-family: var(--serif);
+  font-style: italic;
+  color: var(--brass-deep);
+  opacity: 1;
+}
+
+.mark-spread__specs {
+  margin-top: clamp(14px, 1.6vw, 22px);
+  padding-top: clamp(10px, 1.2vw, 14px);
+  border-top: 1px solid rgba(107, 82, 36, 0.25);
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 12px;
+}
+
+.mark-spread__spec-key {
+  font-family: var(--mono);
+  font-size: clamp(8px, 0.78vw, 10px);
+  letter-spacing: 0.10em;
+  color: var(--brass-deep);
+  text-transform: uppercase;
+  opacity: 0.65;
+}
+
+.mark-spread__spec-val {
+  margin-top: 2px;
+  font-family: var(--mono);
+  font-size: clamp(9px, 0.85vw, 11px);
+  letter-spacing: 0.05em;
+  color: var(--navy);
+  text-transform: uppercase;
+  opacity: 0.88;
+}
+
+.mark-spread__variants {
+  grid-column: 1 / span 2;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: clamp(10px, 1.2vw, 16px);
+}
+
+.variant {
+  border-radius: 4px;
+  padding: clamp(14px, 1.6vw, 20px) clamp(10px, 1.2vw, 16px) clamp(10px, 1.2vw, 14px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.variant--bone {
+  background: var(--bone);
+  border: 1px solid rgba(29, 45, 68, 0.10);
+}
+
+.variant--navy {
+  background: var(--navy-deep);
+}
+
+.variant__art {
+  width: clamp(48px, 5.6vw, 76px);
+  height: auto;
+  display: block;
+}
+
+.variant__art svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.variant__label {
+  margin-top: clamp(8px, 1vw, 14px);
+  font-family: var(--mono);
+  font-size: clamp(8px, 0.78vw, 10px);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.variant__hint {
+  margin-top: 3px;
+  font-family: var(--sans);
+  font-size: clamp(9px, 0.85vw, 11px);
+  opacity: 0.55;
+}
+
+.variant--bone .variant__label { color: var(--brass-deep); }
+.variant--bone .variant__hint { color: var(--navy); }
+
+.variant--navy .variant__label { color: var(--brass); }
+.variant--navy .variant__hint { color: var(--bone); }
+
+/* Clear-space diagram */
+.clearspace svg {
+  width: 100%;
+  max-width: 120px;
+  height: auto;
+  overflow: visible;
+}
+
+/* ============================================================
+   Spread 03 — Palette
+   ============================================================ */
+
+.palette-spread__grid {
+  flex: 1;
+  display: grid;
+  grid-template-rows: repeat(4, 1fr);
+  gap: clamp(6px, 0.9vw, 12px);
+}
+
+.palette-row {
+  display: grid;
+  grid-template-columns: clamp(72px, 7.5vw, 96px) 1fr 1fr 1fr;
+  gap: clamp(12px, 1.4vw, 18px);
+  align-items: stretch;
+}
+
+.palette-row__label {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.palette-row__family {
+  font-family: var(--serif);
+  font-size: clamp(14px, 1.4vw, 18px);
+  font-style: italic;
+  font-weight: 500;
+}
+
+.palette-row__role {
+  margin-top: 2px;
+  font-family: var(--mono);
+  font-size: clamp(7px, 0.75vw, 9.5px);
+  letter-spacing: 0.12em;
+  color: var(--brass-deep);
+  text-transform: uppercase;
+}
+
+.swatch {
+  display: flex;
+  flex-direction: column;
+}
+
+.swatch__chip {
+  height: clamp(28px, 3.2vw, 44px);
+  border-radius: 3px;
+}
+
+.swatch__meta {
+  margin-top: clamp(4px, 0.5vw, 8px);
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 4px;
+  flex-wrap: wrap;
+  font-family: var(--mono);
+  font-size: clamp(7.5px, 0.75vw, 10px);
+  color: var(--navy);
+  opacity: 0.82;
+  line-height: 1.3;
+}
+
+.swatch__role {
+  margin-top: 1px;
+  font-family: var(--sans);
+  font-size: clamp(8.5px, 0.85vw, 10.5px);
+  color: var(--navy);
+  opacity: 0.55;
+  line-height: 1.4;
+}
+
+.swatch--with-border .swatch__chip {
+  border: 1px solid rgba(29, 45, 68, 0.10);
+}
+
+/* Lone coral-deep cell needs a partner; we fill it with an editorial caption */
+.palette-row__editorial {
+  display: flex;
+  align-items: flex-end;
+  padding-bottom: 4px;
+}
+
+.palette-row__editorial p {
+  margin: 0;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(10px, 1vw, 12px);
+  color: var(--navy);
+  opacity: 0.55;
+  line-height: 1.4;
+}
+
+/* ============================================================
+   Spread 04 — Typography
+   ============================================================ */
+
+.type-spread__pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(20px, 2.6vw, 36px);
+}
+
+.type-card__heading {
+  display: flex;
+  align-items: baseline;
+  gap: clamp(10px, 1.4vw, 18px);
+  margin-bottom: clamp(4px, 0.6vw, 8px);
+}
+
+.type-card__aa-serif {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(44px, 5.2vw, 72px);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--brass-deep);
+}
+
+.type-card__aa-sans {
+  font-family: var(--sans);
+  font-size: clamp(40px, 4.8vw, 66px);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--navy);
+}
+
+.type-card__name {
+  display: flex;
+  flex-direction: column;
+}
+
+.type-card__name-title {
+  font-family: var(--serif);
+  font-size: clamp(13px, 1.2vw, 16px);
+  color: var(--navy);
+}
+
+.type-card__name-role {
+  margin-top: 2px;
+  font-family: var(--mono);
+  font-size: clamp(8px, 0.78vw, 10px);
+  letter-spacing: 0.15em;
+  color: var(--brass-deep);
+  text-transform: uppercase;
+}
+
+.type-card__specimen-serif {
+  font-family: var(--serif);
+  font-size: clamp(11px, 1.05vw, 13.5px);
+  color: var(--navy);
+  opacity: 0.80;
+  letter-spacing: 0.02em;
+  line-height: 1.3;
+}
+
+.type-card__specimen-sans {
+  font-family: var(--sans);
+  font-size: clamp(10px, 1vw, 12.5px);
+  color: var(--navy);
+  opacity: 0.80;
+  line-height: 1.45;
+}
+
+.type-card__note {
+  margin-top: clamp(8px, 1vw, 12px);
+  font-family: var(--sans);
+  font-size: clamp(9px, 0.85vw, 11px);
+  color: var(--navy);
+  opacity: 0.58;
+  line-height: 1.4;
+}
+
+.type-card__note em {
+  font-family: var(--serif);
+  font-style: italic;
+  color: var(--brass-deep);
+  opacity: 1;
+}
+
+.lockup-block {
+  margin-top: clamp(14px, 1.8vw, 22px);
+  padding-top: clamp(10px, 1.3vw, 16px);
+  border-top: 1px solid rgba(107, 82, 36, 0.25);
+  display: flex;
+  align-items: center;
+  gap: clamp(16px, 2vw, 28px);
+}
+
+.lockup-block__svg {
+  flex: 0 0 auto;
+  width: clamp(220px, 24vw, 340px);
+  color: var(--navy);
+}
+
+.lockup-block__svg svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.lockup-block__caption {
+  flex: 1;
+  padding-left: clamp(14px, 1.8vw, 22px);
+  border-left: 1px solid rgba(107, 82, 36, 0.25);
+}
+
+.lockup-block__caption-label {
+  font-family: var(--mono);
+  font-size: clamp(8px, 0.78vw, 10px);
+  letter-spacing: 0.15em;
+  color: var(--brass-deep);
+  text-transform: uppercase;
+  margin-bottom: clamp(4px, 0.6vw, 8px);
+}
+
+.lockup-block__caption-line {
+  font-family: var(--serif);
+  font-size: clamp(14px, 1.5vw, 20px);
+  line-height: 1.25;
+  color: var(--navy);
+}
+
+.lockup-block__caption-line em {
+  font-style: italic;
+  color: var(--brass-deep);
+}
+
+.lockup-block__caption-rule {
+  margin-top: 5px;
+  font-family: var(--sans);
+  font-size: clamp(9px, 0.85vw, 11px);
+  color: var(--navy);
+  opacity: 0.60;
+  line-height: 1.4;
+}
+
+/* ============================================================
+   Spread 05 — Voice
+   ============================================================ */
+
+.voice-spread__display {
+  margin-bottom: clamp(18px, 2.4vw, 30px);
+}
+
+.voice-spread__label {
+  font-family: var(--mono);
+  font-size: clamp(8px, 0.78vw, 10px);
+  letter-spacing: 0.18em;
+  color: var(--brass-deep);
+  text-transform: uppercase;
+  margin-bottom: clamp(8px, 1vw, 12px);
+}
+
+.voice-spread__display-line {
+  font-family: var(--serif);
+  font-size: clamp(26px, 3.2vw, 44px);
+  font-weight: 500;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: var(--navy);
+}
+
+.voice-spread__display-line em {
+  font-style: italic;
+  color: var(--brass-deep);
+}
+
+.voice-spread__middle {
+  display: grid;
+  grid-template-columns: 1.35fr 1fr;
+  gap: clamp(22px, 2.8vw, 36px);
+  margin-bottom: clamp(16px, 2vw, 24px);
+}
+
+.voice-spread__body-copy {
+  font-family: var(--serif);
+  font-size: clamp(12px, 1.15vw, 15px);
+  line-height: 1.55;
+  color: var(--navy);
+}
+
+.voice-spread__body-copy em {
+  font-style: italic;
+  color: var(--brass-deep);
+}
+
+.voice-spread__spec {
+  font-family: var(--sans);
+  font-size: clamp(10px, 0.95vw, 12.5px);
+  line-height: 1.85;
+  color: var(--navy);
+}
+
+.voice-spread__spec-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.voice-spread__spec-value {
+  opacity: 0.65;
+}
+
+.voice-spread__rules {
+  padding-top: clamp(10px, 1.3vw, 16px);
+  border-top: 1px solid rgba(107, 82, 36, 0.25);
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: clamp(14px, 1.8vw, 24px);
+}
+
+.rule-card {
+  padding-left: clamp(10px, 1.2vw, 14px);
+  border-left: 1px solid rgba(107, 82, 36, 0.40);
+}
+
+.rule-card__label {
+  font-family: var(--mono);
+  font-size: clamp(8px, 0.78vw, 10px);
+  letter-spacing: 0.18em;
+  color: var(--brass-deep);
+  text-transform: uppercase;
+  margin-bottom: clamp(3px, 0.4vw, 5px);
+}
+
+.rule-card__line {
+  font-family: var(--serif);
+  font-size: clamp(11px, 1.1vw, 14px);
+  font-style: italic;
+  font-weight: 400;
+  color: var(--brass-deep);
+  line-height: 1.3;
+}
+
+.rule-card__note {
+  margin-top: clamp(3px, 0.4vw, 5px);
+  font-family: var(--sans);
+  font-size: clamp(8.5px, 0.85vw, 10.5px);
+  color: var(--navy);
+  opacity: 0.58;
+  line-height: 1.4;
+}
+
+/* ============================================================
+   Spread 06 — Pattern
+   ============================================================ */
+
+.pattern-spread__hero {
+  flex: 1;
+  background: var(--navy-deep);
+  border-radius: 4px;
+  position: relative;
+  overflow: hidden;
+}
+
+.pattern-spread__hero-pattern {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  color: var(--brass);
+}
+
+.pattern-spread__hero-label {
+  position: absolute;
+  top: clamp(14px, 1.8vw, 22px);
+  left: clamp(16px, 2vw, 26px);
+  font-family: var(--mono);
+  font-size: clamp(8px, 0.78vw, 10px);
+  letter-spacing: 0.20em;
+  color: var(--brass);
+  text-transform: uppercase;
+  opacity: 0.85;
+}
+
+.pattern-spread__hero-caption {
+  position: absolute;
+  bottom: clamp(16px, 2vw, 24px);
+  left: clamp(16px, 2vw, 26px);
+  max-width: 52%;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(12px, 1.2vw, 16px);
+  color: var(--bone);
+  opacity: 0.82;
+  line-height: 1.35;
+}
+
+.pattern-spread__variants {
+  margin-top: clamp(10px, 1.4vw, 16px);
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: clamp(8px, 1vw, 12px);
+}
+
+.pattern-variant {
+  height: clamp(70px, 9vw, 100px);
+  border-radius: 4px;
+  position: relative;
+  overflow: hidden;
+}
+
+.pattern-variant__svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.pattern-variant--bone {
+  background: var(--bone);
+  border: 1px solid rgba(29, 45, 68, 0.10);
+}
+
+.pattern-variant--bone .pattern-variant__svg { color: var(--navy); }
+
+.pattern-variant--kraft {
+  background: var(--kraft);
+}
+
+.pattern-variant--kraft .pattern-variant__svg { color: var(--navy); }
+
+.pattern-variant--compact {
+  background: var(--navy);
+}
+
+.pattern-variant--compact .pattern-variant__svg { color: var(--brass); }
+
+.pattern-variant__label {
+  position: absolute;
+  top: clamp(8px, 1vw, 12px);
+  left: clamp(10px, 1.2vw, 14px);
+  font-family: var(--mono);
+  font-size: clamp(7px, 0.7vw, 9px);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  z-index: 1;
+}
+
+.pattern-variant--bone .pattern-variant__label,
+.pattern-variant--kraft .pattern-variant__label { color: var(--brass-deep); }
+
+.pattern-variant--compact .pattern-variant__label { color: var(--brass); }
+
+.pattern-variant__hint {
+  position: absolute;
+  bottom: clamp(6px, 0.8vw, 10px);
+  right: clamp(10px, 1.2vw, 14px);
+  font-family: var(--sans);
+  font-size: clamp(8px, 0.82vw, 10.5px);
+  opacity: 0.55;
+  z-index: 1;
+}
+
+.pattern-variant--bone .pattern-variant__hint,
+.pattern-variant--kraft .pattern-variant__hint { color: var(--navy); }
+
+.pattern-variant--compact .pattern-variant__hint { color: var(--bone); }
+
+/* ============================================================
+   Spread 07 — Materials
+   ============================================================ */
+
+.materials-spread__grid {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  gap: clamp(10px, 1.3vw, 16px);
+}
+
+.material-hero {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgba(29, 45, 68, 0.10);
+  border-radius: 4px;
+  overflow: hidden;
+  background: var(--bone);
+}
+
+.material-hero__photo {
+  flex: 1;
+  min-height: clamp(120px, 14vw, 180px);
+}
+
+.material-hero__body {
+  padding: clamp(12px, 1.5vw, 18px) clamp(14px, 1.8vw, 20px) clamp(14px, 1.8vw, 20px);
+}
+
+.material-hero__row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: clamp(6px, 0.8vw, 10px);
+  gap: 12px;
+}
+
+.material-hero__name {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(16px, 1.8vw, 24px);
+  color: var(--navy);
+}
+
+.material-hero__tag {
+  font-family: var(--mono);
+  font-size: clamp(8px, 0.78vw, 10px);
+  letter-spacing: 0.20em;
+  color: var(--brass-deep);
+  text-transform: uppercase;
+  flex-shrink: 0;
+}
+
+.material-hero__copy {
+  font-family: var(--sans);
+  font-size: clamp(10px, 1vw, 12.5px);
+  color: var(--navy);
+  opacity: 0.78;
+  line-height: 1.5;
+  margin-bottom: clamp(8px, 1vw, 12px);
+}
+
+.material-hero__copy em {
+  font-family: var(--serif);
+  font-style: italic;
+  color: var(--brass-deep);
+  opacity: 1;
+}
+
+.material-hero__specs {
+  padding-top: clamp(6px, 0.8vw, 10px);
+  border-top: 1px solid rgba(107, 82, 36, 0.22);
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 8px;
+}
+
+.material-hero__spec-key {
+  font-family: var(--mono);
+  font-size: clamp(7.5px, 0.75vw, 9.5px);
+  letter-spacing: 0.10em;
+  color: var(--brass-deep);
+  text-transform: uppercase;
+  opacity: 0.6;
+}
+
+.material-hero__spec-val {
+  margin-top: 2px;
+  font-family: var(--mono);
+  font-size: clamp(8px, 0.78vw, 10px);
+  color: var(--navy);
+  opacity: 0.88;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.material-satellites {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: clamp(8px, 1vw, 12px);
+}
+
+.material-card {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgba(29, 45, 68, 0.10);
+  border-radius: 4px;
+  overflow: hidden;
+  background: var(--bone);
+}
+
+.material-card__photo {
+  flex: 1;
+  min-height: clamp(40px, 5vw, 70px);
+}
+
+.material-card__body {
+  padding: clamp(6px, 0.8vw, 9px) clamp(8px, 1vw, 11px) clamp(8px, 1vw, 11px);
+}
+
+.material-card__row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.material-card__name {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(11px, 1.1vw, 14px);
+  color: var(--navy);
+  line-height: 1.1;
+}
+
+.material-card__tag {
+  font-family: var(--mono);
+  font-size: clamp(7px, 0.7vw, 8.5px);
+  letter-spacing: 0.18em;
+  color: var(--brass-deep);
+  text-transform: uppercase;
+  flex-shrink: 0;
+}
+
+.material-card__copy {
+  margin-top: 3px;
+  font-family: var(--sans);
+  font-size: clamp(8.5px, 0.85vw, 10.5px);
+  color: var(--navy);
+  opacity: 0.65;
+  line-height: 1.35;
+}
+
+/* ============================================================
+   Spread 08 — Applications
+   ============================================================ */
+
+.applications-spread__grid {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: clamp(10px, 1.4vw, 16px);
+}
+
+.application-hero {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgba(29, 45, 68, 0.10);
+  border-radius: 4px;
+  overflow: hidden;
+  background: var(--bone);
+}
+
+.application-hero__photo {
+  flex: 1;
+  min-height: clamp(150px, 17vw, 240px);
+  background-color: var(--navy-deep);
+}
+
+.application-hero__body {
+  padding: clamp(12px, 1.5vw, 18px) clamp(14px, 1.8vw, 20px) clamp(14px, 1.8vw, 20px);
+}
+
+.application-hero__row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: clamp(4px, 0.6vw, 8px);
+}
+
+.application-hero__name {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(15px, 1.7vw, 22px);
+  color: var(--navy);
+}
+
+.application-hero__name em {
+  font-style: italic;
+  color: var(--brass-deep);
+}
+
+.application-hero__tag {
+  font-family: var(--mono);
+  font-size: clamp(8px, 0.8vw, 10px);
+  letter-spacing: 0.20em;
+  color: var(--brass-deep);
+  text-transform: uppercase;
+  flex-shrink: 0;
+}
+
+.application-hero__copy {
+  font-family: var(--sans);
+  font-size: clamp(10px, 0.95vw, 12px);
+  color: var(--navy);
+  opacity: 0.72;
+  line-height: 1.5;
+}
+
+.application-satellites {
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr;
+  gap: clamp(8px, 1vw, 12px);
+}
+
+.application-satellite {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border: 1px solid rgba(29, 45, 68, 0.10);
+  border-radius: 4px;
+  overflow: hidden;
+  background: var(--bone);
+}
+
+.application-satellite__photo {
+  /* Background applied via inline style or per-variant class */
+}
+
+.application-satellite__body {
+  padding: clamp(8px, 1vw, 12px) clamp(10px, 1.2vw, 14px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.application-satellite__label {
+  font-family: var(--mono);
+  font-size: clamp(7.5px, 0.78vw, 9.5px);
+  letter-spacing: 0.20em;
+  color: var(--brass-deep);
+  text-transform: uppercase;
+}
+
+.application-satellite__name {
+  margin-top: 3px;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(11px, 1.15vw, 15px);
+  color: var(--navy);
+}
+
+.application-satellite__copy {
+  margin-top: 3px;
+  font-family: var(--sans);
+  font-size: clamp(8.5px, 0.85vw, 10.5px);
+  color: var(--navy);
+  opacity: 0.65;
+  line-height: 1.35;
+}
+
+/* ============================================================
+   Spread 09 — Colophon
+   ============================================================ */
+
+.colophon-spread__body {
+  display: flex;
+  flex-direction: column;
+}
+
+.colophon-spread__mark {
+  display: flex;
+  justify-content: center;
+  padding-top: clamp(6px, 1vw, 12px);
+  padding-bottom: clamp(20px, 2.4vw, 32px);
+}
+
+.colophon-spread__mark svg {
+  width: clamp(44px, 5vw, 64px);
+  height: clamp(44px, 5vw, 64px);
+  color: var(--brass);
+}
+
+.colophon-spread__quote {
+  text-align: center;
+  margin-bottom: clamp(20px, 2.4vw, 32px);
+}
+
+.colophon-spread__quote-line {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(22px, 2.6vw, 34px);
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: var(--navy);
+}
+
+.colophon-spread__quote-line em {
+  font-style: normal;
+  color: var(--brass-deep);
+}
+
+.colophon-spread__quote-rule {
+  margin: clamp(10px, 1.4vw, 18px) auto 0;
+  width: clamp(28px, 3vw, 40px);
+  height: 1px;
+  background: rgba(107, 82, 36, 0.45);
+}
+
+.colophon-spread__credits {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: clamp(20px, 2.5vw, 36px);
+  padding: 0 clamp(14px, 1.8vw, 24px);
+}
+
+.credits-column__label {
+  font-family: var(--mono);
+  font-size: clamp(8px, 0.78vw, 10px);
+  letter-spacing: 0.20em;
+  color: var(--brass-deep);
+  text-transform: uppercase;
+  margin-bottom: clamp(8px, 1vw, 12px);
+}
+
+.credits-column__body {
+  font-family: var(--serif);
+  font-size: clamp(11px, 1.1vw, 14px);
+  line-height: 1.65;
+  color: var(--navy);
+  opacity: 0.80;
+}
+
+.colophon-spread__pattern {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 22%;
+  color: var(--brass-deep);
+  pointer-events: none;
+}
+
+/* ============================================================
+   Responsive — narrow and very narrow screens.
+   At ≤900px the dense grids on Spreads 02, 04, 05, 07, 08 collapse
+   to single column so card content gets full width and never clips.
+   ============================================================ */
+
+@media (max-width: 900px) {
+  .mark-spread__grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+  }
+  .mark-spread__variants {
+    grid-column: 1;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  .type-spread__pair {
+    grid-template-columns: 1fr;
+  }
+
+  .lockup-block {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+  }
+  .lockup-block__caption {
+    padding-left: 0;
+    border-left: none;
+    border-top: 1px solid rgba(107, 82, 36, 0.25);
+    padding-top: 12px;
+    width: 100%;
+  }
+
+  .voice-spread__middle {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .voice-spread__rules {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .materials-spread__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .applications-spread__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .palette-row {
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+  .palette-row__label {
+    grid-column: 1 / -1;
+    flex-direction: row;
+    align-items: baseline;
+    gap: 12px;
+  }
+  .palette-row__editorial {
+    grid-column: 1 / -1;
+  }
+
+  .colophon-spread__credits {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .pattern-spread__variants {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  body {
+    padding: 16px 8px;
+  }
+  .spread {
+    margin-bottom: 24px;
+    padding: 48px 18px;
+  }
+
+  .mark-spread__variants {
+    grid-template-columns: 1fr;
+  }
+
+  .pattern-spread__variants {
+    grid-template-columns: 1fr;
+  }
+
+  .pattern-variant {
+    height: 88px;
+  }
+
+  .voice-spread__display-line {
+    font-size: 28px;
+  }
+}
+
+/* Chapter-close hint (added on Spread 09 to bridge to Chapter II) */
+.chapter-close__hint {
+  margin-top: clamp(14px, 1.8vw, 22px);
+  font-family: var(--mono);
+  font-size: clamp(8px, 0.78vw, 10px);
+  letter-spacing: 0.20em;
+  color: var(--brass-deep);
+  text-transform: uppercase;
+  opacity: 0.65;
+  text-align: center;
+}
+
+/* ============================================================
+   CHAPTER II — PERFORMANCE
+   All performance-tier spreads share these base treatments.
+   Surface flips to navy-deep; brass becomes the topbar/footer color
+   (bright on navy-deep instead of brass-deep on bone).
+   ============================================================ */
+
+.spread--perf {
+  background: var(--navy-deep);
+  color: var(--bone);
+}
+
+.spread--perf .spread__topbar,
+.spread--perf .spread__footer-label,
+.spread--perf .spread__footer-page {
+  color: var(--brass);
+}
+
+.spread--perf .spread__title-row {
+  border-bottom-color: rgba(167, 133, 70, 0.30);
+}
+
+.spread--perf .spread__title {
+  font-family: var(--sans);
+  font-size: clamp(20px, 2.2vw, 28px);
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  color: var(--bone);
+  text-transform: uppercase;
+}
+
+.spread--perf .spread__title em {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
+  color: var(--brass);
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.spread--perf .spread__title-meta {
+  color: var(--brass);
+}
+
+/* ============================================================
+   Spread 10 — Performance Chapter Divider
+   ============================================================ */
+
+.divider {
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.divider__chapter-mark {
+  font-family: var(--mono);
+  font-size: clamp(10px, 1.0vw, 12px);
+  font-weight: 500;
+  letter-spacing: 0.30em;
+  color: var(--brass);
+  text-transform: uppercase;
+  margin-bottom: clamp(28px, 3.5vw, 44px);
+}
+
+.divider__chapter-mark::before,
+.divider__chapter-mark::after {
+  content: "—";
+  display: inline-block;
+  margin: 0 0.8em;
+  opacity: 0.65;
+}
+
+.divider__title {
+  font-family: var(--sans);
+  font-size: clamp(36px, 5.5vw, 76px);
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  padding-left: 0.22em;
+  color: var(--bone);
+  line-height: 1;
+  margin: 0;
+}
+
+.divider__rule {
+  margin: clamp(24px, 3vw, 36px) auto 0;
+  width: 1px;
+  height: clamp(24px, 3vw, 36px);
+  background: var(--brass-deep);
+  opacity: 0.65;
+}
+
+.divider__tagline {
+  margin-top: clamp(24px, 3vw, 36px);
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(15px, 1.7vw, 22px);
+  color: var(--bone);
+  opacity: 0.78;
+  line-height: 1.4;
+  max-width: 520px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.divider__meta {
+  margin-top: clamp(40px, 5vw, 64px);
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: clamp(20px, 3vw, 48px);
+  font-family: var(--mono);
+  font-size: clamp(8px, 0.85vw, 10px);
+  letter-spacing: 0.18em;
+  color: var(--brass);
+  text-transform: uppercase;
+  width: 100%;
+  max-width: 720px;
+}
+
+.divider__meta-key {
+  opacity: 0.55;
+  margin-bottom: 4px;
+}
+
+.divider__meta-val {
+  color: var(--bone);
+  opacity: 0.92;
+}
+
+.divider__meta-cell:nth-child(1) { text-align: left; }
+.divider__meta-cell:nth-child(2) { text-align: center; }
+.divider__meta-cell:nth-child(3) { text-align: right; }
+
+.divider__pattern {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 36%;
+  color: var(--brass-deep);
+  opacity: 0.42;
+  pointer-events: none;
+}
+
+/* ============================================================
+   Spread 11 — The Tier
+   The only spread with a split bone/navy-deep background.
+   ============================================================ */
+
+.spread--tier {
+  background: var(--bone);
+  color: var(--navy);
+}
+
+.spread--tier::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50%;
+  height: 100%;
+  background: var(--navy-deep);
+  border-radius: 0 4px 4px 0;
+  z-index: 0;
+}
+
+.spread--tier > * { position: relative; z-index: 1; }
+
+.spread--tier .spread__topbar span:first-child { color: var(--brass-deep); }
+.spread--tier .spread__topbar span:last-child { color: var(--brass); }
+.spread--tier .spread__footer-label { color: var(--brass-deep); }
+.spread--tier .spread__footer-page { color: var(--brass); }
+
+.tier__intro {
+  text-align: center;
+  margin-bottom: clamp(20px, 2.5vw, 32px);
+  padding: 0 clamp(12px, 2vw, 28px);
+}
+
+.tier__intro-eyebrow {
+  font-family: var(--mono);
+  font-size: clamp(8px, 0.85vw, 10.5px);
+  letter-spacing: 0.22em;
+  color: var(--brass-deep);
+  text-transform: uppercase;
+}
+
+.tier__intro-eyebrow::before,
+.tier__intro-eyebrow::after {
+  content: "—";
+  display: inline-block;
+  margin: 0 0.6em;
+  opacity: 0.5;
+}
+
+.tier__intro-eyebrow span {
+  color: var(--bone);
+  background: var(--navy-deep);
+  padding: 1px 6px;
+  border-radius: 2px;
+  margin: 0 4px;
+}
+
+.tier__intro-headline {
+  margin-top: clamp(10px, 1.2vw, 14px);
+  font-family: var(--serif);
+  font-size: clamp(22px, 2.6vw, 34px);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+  color: var(--navy);
+}
+
+.tier__intro-headline em {
+  font-style: italic;
+  color: var(--brass-deep);
+}
+
+.tier__table {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 100px 1fr;
+  gap: 0;
+  align-items: stretch;
+  margin-top: clamp(8px, 1vw, 14px);
+}
+
+.tier__col {
+  display: flex;
+  flex-direction: column;
+  padding: clamp(14px, 1.8vw, 22px) clamp(14px, 2vw, 28px);
+}
+
+.tier__col--co {
+  text-align: right;
+  color: var(--navy);
+}
+
+.tier__col--perf {
+  color: var(--bone);
+}
+
+.tier__col-head {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: clamp(14px, 1.8vw, 22px);
+  padding-bottom: clamp(10px, 1.4vw, 16px);
+}
+
+.tier__col--co .tier__col-head {
+  border-bottom: 1px solid rgba(107, 82, 36, 0.30);
+  align-items: flex-end;
+}
+
+.tier__col--perf .tier__col-head {
+  border-bottom: 1px solid rgba(167, 133, 70, 0.45);
+  align-items: flex-start;
+}
+
+.tier__col-tier {
+  font-family: var(--mono);
+  font-size: clamp(8px, 0.78vw, 10px);
+  letter-spacing: 0.20em;
+  text-transform: uppercase;
+}
+
+.tier__col--co .tier__col-tier { color: var(--brass-deep); }
+.tier__col--perf .tier__col-tier { color: var(--brass); }
+
+.tier__col-name {
+  font-family: var(--serif);
+  font-size: clamp(20px, 2.2vw, 28px);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1;
+}
+
+.tier__col--co .tier__col-name { color: var(--navy); }
+.tier__col--co .tier__col-name em { font-style: italic; color: var(--brass-deep); }
+
+.tier__col--perf .tier__col-name {
+  font-family: var(--sans);
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  padding-left: 0.18em;
+  font-size: clamp(15px, 1.5vw, 19px);
+  text-transform: uppercase;
+  color: var(--bone);
+}
+
+.tier__labels {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: clamp(14px, 1.8vw, 22px) 0;
+  gap: 0;
+}
+
+.tier__label-spacer {
+  flex: 0 0 auto;
+  height: clamp(48px, 5.4vw, 70px);
+}
+
+.tier__label {
+  font-family: var(--mono);
+  font-size: clamp(7.5px, 0.75vw, 9.5px);
+  letter-spacing: 0.18em;
+  color: var(--brass-deep);
+  text-transform: uppercase;
+  text-align: center;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  background: linear-gradient(to right, transparent 0%, var(--bone) 30%, var(--navy-deep) 70%, transparent 100%);
+  position: relative;
+}
+
+.tier__row {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  font-family: var(--sans);
+  font-size: clamp(10.5px, 1.05vw, 13px);
+  line-height: 1.4;
+}
+
+.tier__col--co .tier__row { justify-content: flex-end; color: var(--navy); }
+.tier__col--co .tier__row em { font-style: italic; color: var(--brass-deep); }
+
+.tier__col--perf .tier__row { justify-content: flex-start; color: var(--bone); opacity: 0.92; }
+.tier__col--perf .tier__row strong {
+  font-family: var(--mono);
+  font-weight: 500;
+  font-size: 0.85em;
+  letter-spacing: 0.10em;
+  color: var(--brass);
+  text-transform: uppercase;
+  padding-left: 0.10em;
+}
+
+/* ============================================================
+   Spread 12 — Palette & Materials
+   ============================================================ */
+
+.perf-system {
+  flex: 1;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  gap: clamp(14px, 1.8vw, 24px);
+}
+
+.perf-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.perf-section__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: clamp(8px, 1vw, 12px);
+  gap: 14px;
+}
+
+.perf-section__head-label {
+  font-family: var(--mono);
+  font-size: clamp(8px, 0.78vw, 10px);
+  letter-spacing: 0.20em;
+  color: var(--brass);
+  text-transform: uppercase;
+}
+
+.perf-section__head-eyebrow {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(11px, 1.05vw, 13px);
+  color: var(--bone);
+  opacity: 0.55;
+}
+
+.perf-palette {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: clamp(8px, 1vw, 14px);
+  flex: 1;
+}
+
+.perf-swatch {
+  display: flex;
+  flex-direction: column;
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+}
+
+.perf-swatch__chip {
+  flex: 1;
+  min-height: clamp(60px, 8vw, 110px);
+  border-radius: 4px 4px 0 0;
+  position: relative;
+}
+
+.perf-swatch__chip--bordered {
+  border: 1px solid rgba(167, 133, 70, 0.30);
+  border-bottom: none;
+}
+
+.perf-swatch__body {
+  padding: clamp(8px, 1vw, 12px) clamp(10px, 1.2vw, 14px) clamp(10px, 1.2vw, 14px);
+  border: 1px solid rgba(167, 133, 70, 0.18);
+  border-top: none;
+  border-radius: 0 0 4px 4px;
+}
+
+.perf-swatch__name {
+  font-family: var(--mono);
+  font-size: clamp(9px, 0.88vw, 11px);
+  font-weight: 500;
+  color: var(--bone);
+  letter-spacing: 0.05em;
+}
+
+.perf-swatch__hex {
+  margin-top: 2px;
+  font-family: var(--mono);
+  font-size: clamp(7.5px, 0.75vw, 9.5px);
+  color: var(--brass);
+  opacity: 0.85;
+}
+
+.perf-swatch__role {
+  margin-top: clamp(4px, 0.5vw, 6px);
+  font-family: var(--sans);
+  font-size: clamp(8.5px, 0.85vw, 10.5px);
+  color: var(--bone);
+  opacity: 0.6;
+  line-height: 1.35;
+}
+
+.perf-swatch__role em {
+  font-family: var(--serif);
+  font-style: italic;
+  color: var(--brass);
+  opacity: 1;
+}
+
+.perf-swatch--lead .perf-swatch__chip::after {
+  content: "LEAD";
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  font-family: var(--mono);
+  font-size: 8px;
+  letter-spacing: 0.18em;
+  color: var(--brass);
+  background: rgba(13, 19, 33, 0.65);
+  padding: 2px 6px;
+  border: 1px solid rgba(167, 133, 70, 0.45);
+  border-radius: 2px;
+}
+
+.perf-materials {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(8px, 1vw, 14px);
+  flex: 1;
+}
+
+.perf-material {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgba(167, 133, 70, 0.18);
+  border-radius: 4px;
+  overflow: hidden;
+  background: rgba(74, 88, 104, 0.18);
+}
+
+.perf-material__photo {
+  flex: 1;
+  min-height: clamp(50px, 7vw, 90px);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--photo-fallback, var(--steel-deep));
+  background-size: cover;
+  background-position: center;
+}
+
+.perf-material__photo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--photo-gradient, linear-gradient(135deg, rgba(255,255,255,0.10), transparent 60%));
+  pointer-events: none;
+}
+
+.perf-material__caption {
+  position: relative;
+  z-index: 1;
+  font-family: var(--mono);
+  font-size: clamp(7px, 0.7vw, 9px);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border: 1px solid rgba(240, 235, 216, 0.30);
+  border-radius: 2px;
+  color: var(--bone);
+  opacity: 0.55;
+  text-align: center;
+}
+
+.perf-material__photo[style*="background-image"] .perf-material__caption { display: none; }
+.perf-material__photo[style*="background-image"]::after { display: none; }
+
+.perf-material__body {
+  padding: clamp(8px, 1vw, 11px) clamp(10px, 1.2vw, 14px) clamp(10px, 1.2vw, 14px);
+}
+
+.perf-material__name {
+  font-family: var(--sans);
+  font-size: clamp(11px, 1.1vw, 14px);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--bone);
+}
+
+.perf-material__tag {
+  display: inline-block;
+  margin-top: 4px;
+  padding: 1px 6px;
+  font-family: var(--mono);
+  font-size: clamp(7px, 0.7vw, 9px);
+  letter-spacing: 0.18em;
+  color: var(--brass);
+  background: rgba(167, 133, 70, 0.15);
+  border: 1px solid rgba(167, 133, 70, 0.30);
+  border-radius: 2px;
+  text-transform: uppercase;
+}
+
+.perf-material__copy {
+  margin-top: clamp(6px, 0.8vw, 9px);
+  font-family: var(--sans);
+  font-size: clamp(9px, 0.92vw, 11.5px);
+  color: var(--bone);
+  opacity: 0.72;
+  line-height: 1.4;
+}
+
+.perf-material__copy strong {
+  font-family: var(--mono);
+  font-weight: 500;
+  font-size: 0.88em;
+  letter-spacing: 0.08em;
+  color: var(--brass);
+  text-transform: uppercase;
+  padding-left: 0.08em;
+}
+
+/* ============================================================
+   Spread 13 — Three Missions
+   ============================================================ */
+
+.missions {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: clamp(12px, 1.4vw, 18px);
+}
+
+.mission {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgba(167, 133, 70, 0.20);
+  border-radius: 4px;
+  overflow: hidden;
+  background: rgba(74, 88, 104, 0.10);
+  position: relative;
+}
+
+.mission__depth-band {
+  position: relative;
+  height: clamp(80px, 10vw, 130px);
+  background: linear-gradient(180deg, #1D2D44 0%, #0D1321 100%);
+  overflow: hidden;
+  border-bottom: 1px solid rgba(167, 133, 70, 0.20);
+}
+
+.mission__depth-marker {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  z-index: 1;
+}
+
+.mission__depth-num {
+  font-family: var(--sans);
+  font-size: clamp(34px, 4vw, 56px);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: var(--bone);
+  line-height: 1;
+}
+
+.mission__depth-num em {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
+  color: var(--brass);
+  font-size: 0.4em;
+  letter-spacing: 0;
+  margin-left: 4px;
+  vertical-align: super;
+}
+
+.mission__depth-label {
+  margin-top: 4px;
+  font-family: var(--mono);
+  font-size: clamp(8px, 0.78vw, 10px);
+  letter-spacing: 0.22em;
+  color: var(--brass);
+  text-transform: uppercase;
+  opacity: 0.85;
+}
+
+.mission__depth-ticks {
+  position: absolute;
+  top: 12px;
+  bottom: 12px;
+  left: 12px;
+  width: 1px;
+  background: rgba(167, 133, 70, 0.25);
+}
+
+.mission__depth-ticks::before,
+.mission__depth-ticks::after {
+  content: "";
+  position: absolute;
+  left: -3px;
+  width: 7px;
+  height: 1px;
+  background: rgba(167, 133, 70, 0.55);
+}
+
+.mission__depth-ticks::before { top: 0; }
+.mission__depth-ticks::after { bottom: 0; }
+
+.mission__body {
+  padding: clamp(14px, 1.8vw, 22px) clamp(14px, 1.8vw, 22px) clamp(16px, 2vw, 22px);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.mission__name {
+  font-family: var(--sans);
+  font-size: clamp(18px, 2vw, 26px);
+  font-weight: 500;
+  letter-spacing: 0.10em;
+  color: var(--bone);
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.mission__ref {
+  margin-top: 5px;
+  font-family: var(--mono);
+  font-size: clamp(9px, 0.85vw, 11px);
+  letter-spacing: 0.10em;
+  color: var(--brass);
+  text-transform: uppercase;
+}
+
+.mission__rule {
+  margin: clamp(10px, 1.2vw, 14px) 0 clamp(10px, 1.2vw, 14px);
+  height: 1px;
+  background: rgba(167, 133, 70, 0.30);
+}
+
+.mission__desc {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(13px, 1.25vw, 16px);
+  color: var(--bone);
+  line-height: 1.4;
+  margin-bottom: clamp(10px, 1.4vw, 16px);
+}
+
+.mission__desc em {
+  font-style: italic;
+  color: var(--brass);
+}
+
+.mission__specs {
+  margin-top: auto;
+  padding-top: clamp(10px, 1.4vw, 14px);
+  border-top: 1px solid rgba(167, 133, 70, 0.20);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(4px, 0.6vw, 7px);
+  font-family: var(--mono);
+  font-size: clamp(9px, 0.88vw, 11px);
+  letter-spacing: 0.04em;
+  line-height: 1.4;
+}
+
+.mission__spec-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.mission__spec-key {
+  color: var(--brass);
+  opacity: 0.80;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 0.88em;
+}
+
+.mission__spec-val {
+  color: var(--bone);
+  opacity: 0.92;
+  text-align: right;
+}
+
+.mission--flagship {
+  border-color: rgba(167, 133, 70, 0.55);
+  background: rgba(74, 88, 104, 0.18);
+}
+
+.mission--flagship .mission__depth-band {
+  background: linear-gradient(180deg, #1D2D44 0%, #0D1321 60%, #050810 100%);
+}
+
+.mission--flagship::before {
+  content: "FLAGSHIP";
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 2;
+  font-family: var(--mono);
+  font-size: 8px;
+  letter-spacing: 0.20em;
+  color: var(--brass);
+  background: rgba(13, 19, 33, 0.85);
+  padding: 2px 7px;
+  border: 1px solid rgba(167, 133, 70, 0.55);
+  border-radius: 2px;
+}
+
+/* ============================================================
+   Spread 14 — Performance Voice
+   ============================================================ */
+
+.voice {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(14px, 1.8vw, 24px);
+}
+
+.voice__compare {
+  display: grid;
+  grid-template-columns: 1fr 60px 1fr;
+  gap: 0;
+  align-items: stretch;
+  border: 1px solid rgba(167, 133, 70, 0.20);
+  border-radius: 4px;
+  overflow: hidden;
+  flex: 1;
+}
+
+.voice__col {
+  padding: clamp(14px, 1.8vw, 22px) clamp(16px, 2vw, 26px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.voice__col--co {
+  background: var(--bone);
+  color: var(--navy);
+}
+
+.voice__col--perf {
+  background: var(--navy-deep);
+  color: var(--bone);
+}
+
+.voice__col-tag {
+  font-family: var(--mono);
+  font-size: clamp(8px, 0.75vw, 10px);
+  letter-spacing: 0.20em;
+  text-transform: uppercase;
+  margin-bottom: clamp(8px, 1vw, 14px);
+}
+
+.voice__col--co .voice__col-tag { color: var(--brass-deep); }
+.voice__col--perf .voice__col-tag { color: var(--brass); }
+
+.voice__col-headline {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(15px, 1.5vw, 20px);
+  font-weight: 400;
+  color: var(--navy);
+  line-height: 1.2;
+  margin-bottom: clamp(8px, 1vw, 12px);
+}
+
+.voice__col-headline em {
+  color: var(--brass-deep);
+}
+
+.voice__col--perf .voice__col-headline {
+  font-family: var(--sans);
+  font-style: normal;
+  font-size: clamp(14px, 1.4vw, 18px);
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--bone);
+}
+
+.voice__col--perf .voice__col-headline em {
+  font-family: var(--mono);
+  font-style: normal;
+  font-weight: 500;
+  color: var(--brass);
+  letter-spacing: 0.04em;
+  text-transform: none;
+}
+
+.voice__col-body {
+  font-family: var(--serif);
+  font-size: clamp(12px, 1.15vw, 14.5px);
+  line-height: 1.55;
+  color: var(--navy);
+  opacity: 0.85;
+}
+
+.voice__col-body em {
+  font-style: italic;
+  color: var(--brass-deep);
+  opacity: 1;
+}
+
+.voice__col--perf .voice__col-body {
+  font-family: var(--sans);
+  font-size: clamp(11px, 1.05vw, 13.5px);
+  color: var(--bone);
+  opacity: 0.85;
+  line-height: 1.6;
+}
+
+.voice__col--perf .voice__col-body strong {
+  font-family: var(--mono);
+  font-weight: 500;
+  font-size: 0.9em;
+  letter-spacing: 0.04em;
+  color: var(--brass);
+}
+
+.voice__divider {
+  background: linear-gradient(to right, var(--bone) 0%, var(--bone) 50%, var(--navy-deep) 50%, var(--navy-deep) 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 0 4px;
+}
+
+.voice__divider-symbol {
+  font-family: var(--mono);
+  font-size: clamp(14px, 1.6vw, 20px);
+  font-weight: 500;
+  color: var(--brass);
+  background: linear-gradient(to right, var(--bone) 0%, var(--bone) 50%, var(--navy-deep) 50%, var(--navy-deep) 100%);
+  padding: 6px 0;
+  width: 100%;
+  text-align: center;
+}
+
+.voice__divider-line {
+  width: 1px;
+  flex: 1;
+  background: rgba(167, 133, 70, 0.30);
+}
+
+.voice__rules {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: clamp(14px, 1.8vw, 24px);
+}
+
+.voice__rule {
+  padding-left: clamp(10px, 1.2vw, 14px);
+  border-left: 1px solid rgba(167, 133, 70, 0.45);
+}
+
+.voice__rule-label {
+  font-family: var(--mono);
+  font-size: clamp(8px, 0.78vw, 10px);
+  letter-spacing: 0.18em;
+  color: var(--brass);
+  text-transform: uppercase;
+  margin-bottom: clamp(3px, 0.4vw, 5px);
+}
+
+.voice__rule-line {
+  font-family: var(--sans);
+  font-size: clamp(12px, 1.2vw, 15px);
+  font-weight: 500;
+  color: var(--bone);
+  letter-spacing: 0.04em;
+  line-height: 1.3;
+}
+
+.voice__rule-line strong {
+  font-family: var(--mono);
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  color: var(--brass);
+}
+
+.voice__rule-note {
+  margin-top: clamp(4px, 0.5vw, 6px);
+  font-family: var(--sans);
+  font-size: clamp(9px, 0.88vw, 11px);
+  color: var(--bone);
+  opacity: 0.62;
+  line-height: 1.4;
+}
+
+/* ============================================================
+   Spread 15 — Saturation Reference
+   ============================================================ */
+
+.sat {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: clamp(14px, 1.8vw, 24px);
+}
+
+.sat__hero {
+  border: 1px solid rgba(167, 133, 70, 0.25);
+  border-radius: 4px;
+  overflow: hidden;
+  background: #050810;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: clamp(280px, 32vw, 480px);
+}
+
+.sat__hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 40%, rgba(139, 154, 171, 0.10), transparent 65%);
+  pointer-events: none;
+}
+
+.sat__hero[style*="background-image"]::after { display: none; }
+.sat__hero[style*="background-image"] .sat__hero-caption { display: none; }
+
+.sat__hero-caption {
+  position: relative;
+  z-index: 2;
+  font-family: var(--mono);
+  font-size: clamp(9px, 0.85vw, 11px);
+  letter-spacing: 0.20em;
+  color: var(--brass);
+  text-transform: uppercase;
+  padding: 5px 12px;
+  border: 1px solid rgba(167, 133, 70, 0.40);
+  border-radius: 2px;
+  opacity: 0.65;
+  text-align: center;
+}
+
+.sat__hero-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: clamp(14px, 1.8vw, 22px) clamp(16px, 2vw, 26px);
+  background: linear-gradient(180deg, transparent 0%, rgba(5, 8, 16, 0.85) 60%, rgba(5, 8, 16, 0.95) 100%);
+  z-index: 3;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 14px;
+}
+
+.sat__hero-name {
+  font-family: var(--sans);
+  font-size: clamp(18px, 2vw, 26px);
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  color: var(--bone);
+  text-transform: uppercase;
+}
+
+.sat__hero-meta {
+  font-family: var(--mono);
+  font-size: clamp(9px, 0.85vw, 11px);
+  letter-spacing: 0.18em;
+  color: var(--brass);
+  text-transform: uppercase;
+}
+
+.sat__sheet {
+  display: flex;
+  flex-direction: column;
+}
+
+.sat__sheet-head {
+  margin-bottom: clamp(12px, 1.4vw, 18px);
+  padding-bottom: clamp(8px, 1vw, 12px);
+  border-bottom: 1px solid rgba(167, 133, 70, 0.30);
+}
+
+.sat__sheet-eyebrow {
+  font-family: var(--mono);
+  font-size: clamp(8px, 0.78vw, 10px);
+  letter-spacing: 0.20em;
+  color: var(--brass);
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.sat__sheet-title {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(16px, 1.6vw, 21px);
+  color: var(--bone);
+  line-height: 1.25;
+}
+
+.sat__sheet-title em {
+  font-style: italic;
+  color: var(--brass);
+}
+
+.sat__sheet-groups {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(10px, 1.4vw, 16px);
+}
+
+.sat__group-label {
+  font-family: var(--mono);
+  font-size: clamp(7.5px, 0.75vw, 9.5px);
+  letter-spacing: 0.20em;
+  color: var(--brass);
+  text-transform: uppercase;
+  margin-bottom: clamp(4px, 0.6vw, 7px);
+  opacity: 0.78;
+}
+
+.sat__group-rows {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(2px, 0.3vw, 4px);
+}
+
+.sat__row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-family: var(--mono);
+  font-size: clamp(9.5px, 0.95vw, 12px);
+  letter-spacing: 0.02em;
+  padding: clamp(3px, 0.4vw, 5px) 0;
+  gap: 8px;
+}
+
+.sat__row-key {
+  color: var(--bone);
+  opacity: 0.62;
+  text-transform: capitalize;
+}
+
+.sat__row-val {
+  color: var(--bone);
+  opacity: 0.95;
+  text-align: right;
+}
+
+.sat__row-val strong {
+  color: var(--brass);
+  font-weight: 500;
+}
+
+.sat__cert {
+  margin-top: clamp(10px, 1.4vw, 16px);
+  padding-top: clamp(8px, 1vw, 12px);
+  border-top: 1px solid rgba(167, 133, 70, 0.20);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.sat__cert-pill {
+  font-family: var(--mono);
+  font-size: clamp(7.5px, 0.75vw, 9.5px);
+  letter-spacing: 0.14em;
+  color: var(--brass);
+  background: rgba(167, 133, 70, 0.10);
+  border: 1px solid rgba(167, 133, 70, 0.30);
+  padding: 2px 7px;
+  border-radius: 2px;
+  text-transform: uppercase;
+}
+
+/* ============================================================
+   Volume colophon (Spread 16) — credits for both chapters.
+   Inherits the colophon-spread__* styles already defined for Spread 09,
+   plus adds a two-chapter credits grid (4 columns instead of 3).
+   ============================================================ */
+
+.colophon-spread__credits--double {
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+@media (max-width: 900px) {
+  .colophon-spread__credits--double {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .colophon-spread__credits--double {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ============================================================
+   Performance chapter — narrow-screen cascades
+   ============================================================ */
+
+@media (max-width: 900px) {
+  .divider__meta {
+    grid-template-columns: 1fr;
+    gap: 18px;
+    text-align: center;
+  }
+  .divider__meta-cell:nth-child(1),
+  .divider__meta-cell:nth-child(2),
+  .divider__meta-cell:nth-child(3) { text-align: center; }
+
+  .spread--tier::before {
+    width: 100%;
+    height: 50%;
+    top: 50%;
+    border-radius: 0 0 4px 4px;
+  }
+
+  .tier__table {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .tier__col--co,
+  .tier__col--perf { text-align: left; }
+  .tier__col--co .tier__col-head { align-items: flex-start; }
+  .tier__col--co .tier__row { justify-content: flex-start; }
+
+  .tier__labels { display: none; }
+
+  .tier__row {
+    flex-direction: column;
+    align-items: flex-start !important;
+    gap: 2px;
+    padding: 6px 0;
+  }
+
+  .perf-system {
+    grid-template-rows: auto auto;
+  }
+  .perf-palette {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .perf-materials {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .missions {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .voice__compare {
+    grid-template-columns: 1fr;
+  }
+  .voice__divider {
+    height: 40px;
+    background: linear-gradient(to bottom, var(--bone) 0%, var(--bone) 50%, var(--navy-deep) 50%, var(--navy-deep) 100%);
+  }
+  .voice__divider-symbol {
+    background: linear-gradient(to bottom, var(--bone) 0%, var(--bone) 50%, var(--navy-deep) 50%, var(--navy-deep) 100%);
+    padding: 0 12px;
+    width: auto;
+  }
+  .voice__divider-line { display: none; }
+  .voice__rules {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .sat {
+    grid-template-columns: 1fr;
+  }
+  .sat__hero {
+    min-height: 240px;
+  }
+}
+
+@media (max-width: 640px) {
+  .divider__title { font-size: 32px; letter-spacing: 0.18em; }
+  .perf-palette {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* ============================================================
+   Print — landscape A4, one spread per page
+   ============================================================ */
+
+@media print {
+  html, body {
+    background: white;
+    padding: 0;
+    margin: 0;
+  }
+  .spread {
+    box-shadow: none;
+    margin: 0;
+    max-width: none;
+    width: 100%;
+    min-height: 100vh;
+    page-break-after: always;
+    page-break-inside: avoid;
+    border-radius: 0;
+  }
+  .spread:last-child {
+    page-break-after: auto;
+  }
+  @page {
+    size: landscape;
+    margin: 0;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ============================================================
+     SPREAD 01 — COVER
+     ============================================================ -->
+<section class="spread cover" aria-label="Cover">
+  <div class="spread__topbar">
+    <span>Offshore Co. · Brand Board</span>
+    <span>Vol. I · May 2026</span>
+  </div>
+
+  <div class="cover__inner">
+    <svg class="mark cover__mark" viewBox="0 0 512 512" fill="none">
+      <path d="M 450.89 346.88 A 215.04 215.04 0 1 1 450.89 165.12" stroke-width="58.88" stroke-linecap="butt"/>
+      <circle cx="256" cy="256" r="92.16" stroke-width="48.64"/>
+    </svg>
+
+    <div class="cover__wordmark">OFFSHORE&nbsp;CO.</div>
+
+    <div class="cover__rule"></div>
+
+    <div class="cover__tagline">Made for <em>the water.</em></div>
+  </div>
+
+  <svg class="cover__pattern" viewBox="0 0 400 200" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+    <g fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round">
+      <path d="M 0 200 A 200 200 0 0 0 400 200" opacity="0.45"/>
+      <path d="M 30 200 A 170 170 0 0 0 370 200" opacity="0.38"/>
+      <path d="M 60 200 A 140 140 0 0 0 340 200" opacity="0.32"/>
+      <path d="M 90 200 A 110 110 0 0 0 310 200" opacity="0.26"/>
+      <path d="M 120 200 A 80 80 0 0 0 280 200" opacity="0.20"/>
+      <path d="M 150 200 A 50 50 0 0 0 250 200" opacity="0.14"/>
+      <path d="M 180 200 A 20 20 0 0 0 220 200" opacity="0.10"/>
+    </g>
+  </svg>
+
+  <div class="spread__footer-label">Cover</div>
+  <div class="spread__footer-page">01 / 16</div>
+</section>
+
+
+<!-- ============================================================
+     SPREAD 02 — THE MARK
+     ============================================================ -->
+<section class="spread" aria-label="The Mark">
+  <div class="spread__topbar">
+    <span>Identity · Vol. I</span>
+    <span>The Mark · 02 / 16</span>
+  </div>
+
+  <div class="spread__body">
+    <div class="mark-spread__grid">
+
+      <div class="mark-spread__hero">
+        <svg class="mark" viewBox="0 0 512 512" fill="none">
+          <path d="M 450.89 346.88 A 215.04 215.04 0 1 1 450.89 165.12" stroke-width="58.88" stroke-linecap="butt"/>
+          <circle cx="256" cy="256" r="92.16" stroke-width="48.64"/>
+        </svg>
+      </div>
+
+      <div class="mark-spread__copy">
+        <h2 class="mark-spread__copy-title">One shape.<br><em>Five readings.</em></h2>
+        <p class="mark-spread__copy-body">
+          The outer C: the O of <em>Offshore</em>, the c of <em>Co.</em>, the © glyph, a porthole, a dive-watch bezel. The inner o: a dial, an aperture, a target.
+        </p>
+        <div class="mark-spread__specs">
+          <div>
+            <div class="mark-spread__spec-key">Grid</div>
+            <div class="mark-spread__spec-val">512 × 512</div>
+          </div>
+          <div>
+            <div class="mark-spread__spec-key">Gap</div>
+            <div class="mark-spread__spec-val">50°</div>
+          </div>
+          <div>
+            <div class="mark-spread__spec-key">Radii</div>
+            <div class="mark-spread__spec-val">215 / 92</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mark-spread__variants">
+
+        <div class="variant variant--bone">
+          <div class="variant__art">
+            <svg class="mark" viewBox="0 0 512 512" fill="none" style="color: var(--navy);">
+              <path d="M 450.89 346.88 A 215.04 215.04 0 1 1 450.89 165.12" stroke-width="58.88" stroke-linecap="butt"/>
+              <circle cx="256" cy="256" r="92.16" stroke-width="48.64"/>
+            </svg>
+          </div>
+          <div class="variant__label">Navy on Bone</div>
+          <div class="variant__hint">default light surface</div>
+        </div>
+
+        <div class="variant variant--navy">
+          <div class="variant__art">
+            <svg class="mark" viewBox="0 0 512 512" fill="none" style="color: var(--brass);">
+              <path d="M 450.89 346.88 A 215.04 215.04 0 1 1 450.89 165.12" stroke-width="58.88" stroke-linecap="butt"/>
+              <circle cx="256" cy="256" r="92.16" stroke-width="48.64"/>
+            </svg>
+          </div>
+          <div class="variant__label">Brass on Navy</div>
+          <div class="variant__hint">foil &amp; featured</div>
+        </div>
+
+        <div class="variant variant--bone clearspace">
+          <svg viewBox="0 0 280 200" overflow="visible" aria-label="Clear space diagram">
+            <rect x="40" y="20" width="200" height="160" fill="none" stroke="#6B5224" stroke-width="0.6" stroke-dasharray="3 3" opacity="0.55"/>
+            <g fill="none" stroke="#1D2D44" transform="translate(90 50) scale(0.195)">
+              <path d="M 450.89 346.88 A 215.04 215.04 0 1 1 450.89 165.12" stroke-width="58.88" stroke-linecap="butt"/>
+              <circle cx="256" cy="256" r="92.16" stroke-width="48.64"/>
+            </g>
+            <line x1="40" y1="100" x2="90" y2="100" stroke="#6B5224" stroke-width="0.5" opacity="0.65"/>
+            <line x1="190" y1="100" x2="240" y2="100" stroke="#6B5224" stroke-width="0.5" opacity="0.65"/>
+            <line x1="140" y1="20" x2="140" y2="50" stroke="#6B5224" stroke-width="0.5" opacity="0.65"/>
+            <line x1="140" y1="150" x2="140" y2="180" stroke="#6B5224" stroke-width="0.5" opacity="0.65"/>
+            <circle cx="65" cy="100" r="1.5" fill="#6B5224"/>
+            <circle cx="215" cy="100" r="1.5" fill="#6B5224"/>
+            <circle cx="140" cy="35" r="1.5" fill="#6B5224"/>
+            <circle cx="140" cy="165" r="1.5" fill="#6B5224"/>
+          </svg>
+          <div class="variant__label">Clear Space</div>
+          <div class="variant__hint">one inner-ring ⌀ on every side</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="spread__footer-label">The Mark</div>
+  <div class="spread__footer-page">02 / 16</div>
+</section>
+
+
+<!-- ============================================================
+     SPREAD 03 — PALETTE
+     ============================================================ -->
+<section class="spread" aria-label="Palette">
+  <div class="spread__topbar">
+    <span>Color · Vol. I</span>
+    <span>Palette · 03 / 16</span>
+  </div>
+
+  <div class="spread__body">
+    <div class="spread__title-row">
+      <h2 class="spread__title">Four families. <em>Eleven values.</em></h2>
+      <div class="spread__title-meta">tokens/colors.css</div>
+    </div>
+
+    <div class="palette-spread__grid">
+
+      <div class="palette-row">
+        <div class="palette-row__label">
+          <div class="palette-row__family" style="color: var(--navy);">Navy</div>
+          <div class="palette-row__role">anchor</div>
+        </div>
+        <div class="swatch">
+          <div class="swatch__chip" style="background: var(--navy);"></div>
+          <div class="swatch__meta"><span>--navy</span><span>#1D2D44</span></div>
+          <div class="swatch__role">primary ink, locked</div>
+        </div>
+        <div class="swatch">
+          <div class="swatch__chip" style="background: var(--navy-deep);"></div>
+          <div class="swatch__meta"><span>--navy-deep</span><span>#0D1321</span></div>
+          <div class="swatch__role">deep sections</div>
+        </div>
+        <div class="swatch">
+          <div class="swatch__chip" style="background: var(--navy-rich);"></div>
+          <div class="swatch__meta"><span>--navy-rich</span><span>#3E5C76</span></div>
+          <div class="swatch__role">intermediate accent</div>
+        </div>
+      </div>
+
+      <div class="palette-row">
+        <div class="palette-row__label">
+          <div class="palette-row__family" style="color: var(--navy);">Cream</div>
+          <div class="palette-row__role">surface</div>
+        </div>
+        <div class="swatch swatch--with-border">
+          <div class="swatch__chip" style="background: var(--sand);"></div>
+          <div class="swatch__meta"><span>--sand</span><span>#E5DEC4</span></div>
+          <div class="swatch__role">warmest field</div>
+        </div>
+        <div class="swatch swatch--with-border">
+          <div class="swatch__chip" style="background: var(--bone);"></div>
+          <div class="swatch__meta"><span>--bone</span><span>#F0EBD8</span></div>
+          <div class="swatch__role">default surface</div>
+        </div>
+        <div class="swatch swatch--with-border">
+          <div class="swatch__chip" style="background: var(--paper);"></div>
+          <div class="swatch__meta"><span>--paper</span><span>#FAF7E8</span></div>
+          <div class="swatch__role">brightest, lifted</div>
+        </div>
+      </div>
+
+      <div class="palette-row">
+        <div class="palette-row__label">
+          <div class="palette-row__family" style="color: var(--brass-deep);">Brass</div>
+          <div class="palette-row__role">accent</div>
+        </div>
+        <div class="swatch">
+          <div class="swatch__chip" style="background: var(--brass);"></div>
+          <div class="swatch__meta"><span>--brass</span><span>#A78546</span></div>
+          <div class="swatch__role">italic mark, display</div>
+        </div>
+        <div class="swatch">
+          <div class="swatch__chip" style="background: var(--brass-deep);"></div>
+          <div class="swatch__meta"><span>--brass-deep</span><span>#6B5224</span></div>
+          <div class="swatch__role">AA body text</div>
+        </div>
+        <div class="swatch">
+          <div class="swatch__chip" style="background: var(--brass-soft); border: 1px solid rgba(167, 133, 70, 0.30);"></div>
+          <div class="swatch__meta"><span>--brass-soft</span><span>α 0.18</span></div>
+          <div class="swatch__role">tint, pill fill</div>
+        </div>
+      </div>
+
+      <div class="palette-row">
+        <div class="palette-row__label">
+          <div class="palette-row__family" style="color: var(--coral-deep);">Coral</div>
+          <div class="palette-row__role">emphasis</div>
+        </div>
+        <div class="swatch">
+          <div class="swatch__chip" style="background: var(--coral);"></div>
+          <div class="swatch__meta"><span>--coral</span><span>#c97650</span></div>
+          <div class="swatch__role">brand emphasis</div>
+        </div>
+        <div class="swatch">
+          <div class="swatch__chip" style="background: var(--coral-deep);"></div>
+          <div class="swatch__meta"><span>--coral-deep</span><span>#99502E</span></div>
+          <div class="swatch__role">AA depth</div>
+        </div>
+        <div class="palette-row__editorial">
+          <p>Coral runs lean. Used to mark&nbsp;a&nbsp;single&nbsp;moment — never the whole page.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="spread__footer-label">Palette</div>
+  <div class="spread__footer-page">03 / 16</div>
+</section>
+
+
+<!-- ============================================================
+     SPREAD 04 — TYPOGRAPHY
+     ============================================================ -->
+<section class="spread" aria-label="Typography">
+  <div class="spread__topbar">
+    <span>Typography · Vol. I</span>
+    <span>The Pair · 04 / 16</span>
+  </div>
+
+  <div class="spread__body">
+    <div class="spread__title-row">
+      <h2 class="spread__title">Two faces. <em>One voice.</em></h2>
+      <div class="spread__title-meta">tokens/typography.css</div>
+    </div>
+
+    <div class="type-spread__pair">
+
+      <div class="type-card">
+        <div class="type-card__heading">
+          <div class="type-card__aa-serif">Aa</div>
+          <div class="type-card__name">
+            <div class="type-card__name-title">Cormorant Garamond</div>
+            <div class="type-card__name-role">Display · Editorial</div>
+          </div>
+        </div>
+        <div class="type-card__specimen-serif">
+          ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>
+          abcdefghijklmnopqrstuvwxyz<br>
+          <em>ABCDEFGHIJKLMNOPQRSTUVWXYZ</em><br>
+          <em>abcdefghijklmnopqrstuvwxyz</em>
+        </div>
+        <div class="type-card__note">
+          Used for headlines and the italic mark. <em>Italic carries brass.</em>
+        </div>
+      </div>
+
+      <div class="type-card">
+        <div class="type-card__heading">
+          <div class="type-card__aa-sans">Aa</div>
+          <div class="type-card__name">
+            <div class="type-card__name-title">DM Sans</div>
+            <div class="type-card__name-role">Body · Working</div>
+          </div>
+        </div>
+        <div class="type-card__specimen-sans">
+          ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>
+          abcdefghijklmnopqrstuvwxyz<br>
+          0123456789 — &amp; ¶ §<br>
+          <strong style="font-weight: 500;">400 regular · 500 semibold · 600 strong</strong>
+        </div>
+        <div class="type-card__note">
+          Used for body, UI, labels, and the wordmark. Companion DM Mono powers metadata.
+        </div>
+      </div>
+
+    </div>
+
+    <div class="lockup-block">
+      <div class="lockup-block__svg">
+        <svg viewBox="0 0 1760 320" fill="none" stroke="currentColor">
+          <g transform="translate(32 32) scale(0.5)">
+            <path d="M 450.89 346.88 A 215.04 215.04 0 1 1 450.89 165.12" stroke-width="58.88" stroke-linecap="butt"/>
+            <circle cx="256" cy="256" r="92.16" stroke-width="48.64"/>
+          </g>
+          <text x="368" y="210" font-family="'DM Sans', system-ui, sans-serif" font-weight="500" font-size="140" letter-spacing="30" fill="currentColor" stroke="none">OFFSHORE CO.</text>
+        </svg>
+      </div>
+      <div class="lockup-block__caption">
+        <div class="lockup-block__caption-label">The Italic-Brass Rule</div>
+        <div class="lockup-block__caption-line">Made for <em>the water.</em></div>
+        <div class="lockup-block__caption-rule">Cormorant italic carries brass. Roman stays in ink. Never the reverse.</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="spread__footer-label">Typography</div>
+  <div class="spread__footer-page">04 / 16</div>
+</section>
+
+
+<!-- ============================================================
+     SPREAD 05 — VOICE
+     ============================================================ -->
+<section class="spread" aria-label="Voice">
+  <div class="spread__topbar">
+    <span>Voice · Vol. I</span>
+    <span>How We Sound · 05 / 16</span>
+  </div>
+
+  <div class="spread__body">
+    <div class="spread__title-row">
+      <div class="spread__title-meta" style="font-size: clamp(8px, 0.78vw, 10.5px); letter-spacing: 0.15em;">Three scales</div>
+      <div class="spread__title-meta">VOICE.md</div>
+    </div>
+
+    <div class="voice-spread__display">
+      <div class="voice-spread__label">Display · Headline</div>
+      <div class="voice-spread__display-line">
+        An <em>instrument</em>,<br>not a feature.
+      </div>
+    </div>
+
+    <div class="voice-spread__middle">
+      <div>
+        <div class="voice-spread__label">Body · Editorial</div>
+        <div class="voice-spread__body-copy">
+          Offshore Co. makes small-batch dive watches and sea-worn apparel. Each piece is built to <em>age</em> — not maintained against time but improved by it. Brass dulls. Sailcloth softens. Leather darkens. The mark stays.
+        </div>
+      </div>
+
+      <div>
+        <div class="voice-spread__label">Specification · UI</div>
+        <div class="voice-spread__spec">
+          <div class="voice-spread__spec-row"><span>Case</span><span class="voice-spread__spec-value">Aluminum-bronze · 42mm</span></div>
+          <div class="voice-spread__spec-row"><span>Strap</span><span class="voice-spread__spec-value">Sailcloth NATO · navy</span></div>
+          <div class="voice-spread__spec-row"><span>Crystal</span><span class="voice-spread__spec-value">Sapphire · AR underside</span></div>
+          <div class="voice-spread__spec-row"><span>Movement</span><span class="voice-spread__spec-value">Sellita SW200-1</span></div>
+          <div class="voice-spread__spec-row"><span>Made</span><span class="voice-spread__spec-value">Hudson Valley, NY</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="voice-spread__rules">
+      <div class="rule-card">
+        <div class="rule-card__label">Rule</div>
+        <div class="rule-card__line">Italic carries brass.</div>
+        <div class="rule-card__note">Roman stays in ink. Never the reverse.</div>
+      </div>
+      <div class="rule-card">
+        <div class="rule-card__label">Rule</div>
+        <div class="rule-card__line">Patina is the proof.</div>
+        <div class="rule-card__note">Specify materials that age. Don't fight it.</div>
+      </div>
+      <div class="rule-card">
+        <div class="rule-card__label">Rule</div>
+        <div class="rule-card__line">Be specific.</div>
+        <div class="rule-card__note">Sellita SW200-1, not "Swiss automatic."</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="spread__footer-label">Voice</div>
+  <div class="spread__footer-page">05 / 16</div>
+</section>
+
+
+<!-- ============================================================
+     SPREAD 06 — PATTERN
+     ============================================================ -->
+<section class="spread" aria-label="Pattern">
+  <div class="spread__topbar">
+    <span>Pattern · Vol. I</span>
+    <span>Depth Contours · 06 / 16</span>
+  </div>
+
+  <div class="spread__body">
+    <div class="spread__title-row">
+      <h2 class="spread__title">Depth <em>contours.</em></h2>
+      <div class="spread__title-meta">patterns/depth-contours.svg</div>
+    </div>
+
+    <div class="pattern-spread__hero">
+      <svg class="pattern-spread__hero-pattern" viewBox="0 0 400 200" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+        <g fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round">
+          <path d="M 0 200 A 200 200 0 0 0 400 200" opacity="0.78"/>
+          <path d="M 30 200 A 170 170 0 0 0 370 200" opacity="0.64"/>
+          <path d="M 60 200 A 140 140 0 0 0 340 200" opacity="0.52"/>
+          <path d="M 90 200 A 110 110 0 0 0 310 200" opacity="0.40"/>
+          <path d="M 120 200 A 80 80 0 0 0 280 200" opacity="0.30"/>
+          <path d="M 150 200 A 50 50 0 0 0 250 200" opacity="0.20"/>
+          <path d="M 180 200 A 20 20 0 0 0 220 200" opacity="0.12"/>
+        </g>
+      </svg>
+      <div class="pattern-spread__hero-label">Canonical · brass on navy</div>
+      <div class="pattern-spread__hero-caption">
+        Seven concentric arcs, anchored at bottom-center. Reads as bathymetry, sonar echo, a watch crown viewed from above.
+      </div>
+    </div>
+
+    <div class="pattern-spread__variants">
+
+      <div class="pattern-variant pattern-variant--bone">
+        <svg class="pattern-variant__svg" viewBox="0 0 400 200" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+          <g fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round">
+            <path d="M 0 200 A 200 200 0 0 0 400 200" opacity="0.38"/>
+            <path d="M 30 200 A 170 170 0 0 0 370 200" opacity="0.32"/>
+            <path d="M 60 200 A 140 140 0 0 0 340 200" opacity="0.26"/>
+            <path d="M 90 200 A 110 110 0 0 0 310 200" opacity="0.20"/>
+            <path d="M 120 200 A 80 80 0 0 0 280 200" opacity="0.16"/>
+            <path d="M 150 200 A 50 50 0 0 0 250 200" opacity="0.10"/>
+            <path d="M 180 200 A 20 20 0 0 0 220 200" opacity="0.06"/>
+          </g>
+        </svg>
+        <div class="pattern-variant__label">Ink on Bone</div>
+        <div class="pattern-variant__hint">paperwork footer</div>
+      </div>
+
+      <div class="pattern-variant pattern-variant--kraft">
+        <svg class="pattern-variant__svg" viewBox="0 0 400 200" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+          <g fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round">
+            <path d="M 0 200 A 200 200 0 0 0 400 200" opacity="0.42"/>
+            <path d="M 30 200 A 170 170 0 0 0 370 200" opacity="0.36"/>
+            <path d="M 60 200 A 140 140 0 0 0 340 200" opacity="0.30"/>
+            <path d="M 90 200 A 110 110 0 0 0 310 200" opacity="0.24"/>
+            <path d="M 120 200 A 80 80 0 0 0 280 200" opacity="0.18"/>
+            <path d="M 150 200 A 50 50 0 0 0 250 200" opacity="0.12"/>
+            <path d="M 180 200 A 20 20 0 0 0 220 200" opacity="0.08"/>
+          </g>
+        </svg>
+        <div class="pattern-variant__label">Ink on Kraft</div>
+        <div class="pattern-variant__hint">packaging interior</div>
+      </div>
+
+      <div class="pattern-variant pattern-variant--compact">
+        <svg class="pattern-variant__svg" viewBox="0 0 80 80" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+          <g fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round">
+            <path d="M 0 80 A 40 40 0 0 0 80 80" opacity="0.65"/>
+            <path d="M 6 80 A 34 34 0 0 0 74 80" opacity="0.55"/>
+            <path d="M 12 80 A 28 28 0 0 0 68 80" opacity="0.42"/>
+            <path d="M 18 80 A 22 22 0 0 0 62 80" opacity="0.30"/>
+            <path d="M 24 80 A 16 16 0 0 0 56 80" opacity="0.18"/>
+          </g>
+        </svg>
+        <div class="pattern-variant__label">Compact</div>
+        <div class="pattern-variant__hint">empty state, UI anchor</div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="spread__footer-label">Pattern</div>
+  <div class="spread__footer-page">06 / 16</div>
+</section>
+
+
+<!-- ============================================================
+     SPREAD 07 — MATERIALS
+     ============================================================ -->
+<section class="spread" aria-label="Materials">
+  <div class="spread__topbar">
+    <span>Materials · Vol. I</span>
+    <span>Patina Vocabulary · 07 / 16</span>
+  </div>
+
+  <div class="spread__body">
+    <div class="spread__title-row">
+      <h2 class="spread__title">Built to <em>age.</em></h2>
+      <div class="spread__title-meta">MATERIALS.md</div>
+    </div>
+
+    <div class="materials-spread__grid">
+
+      <div class="material-hero">
+        <div class="photo-slot material-hero__photo"
+             style="--photo-fallback: #8B7355; --photo-gradient: radial-gradient(ellipse at 30% 40%, rgba(255,255,255,0.18), transparent 60%), radial-gradient(ellipse at 70% 75%, rgba(0,0,0,0.18), transparent 60%); background-image: url('brand-board/images/07-materials-hero-aluminum-bronze.jpg');">
+          <div class="photo-slot__caption">Photo · aluminum-bronze macro</div>
+        </div>
+        <div class="material-hero__body">
+          <div class="material-hero__row">
+            <div class="material-hero__name">Aluminum-bronze</div>
+            <div class="material-hero__tag">Case · Hero</div>
+          </div>
+          <div class="material-hero__copy">
+            Cu-Al-Ni alloy. Dulls warm. Develops a soft brown patina from skin oils and sea air. The case is the brand's <em>signature surface</em>.
+          </div>
+          <div class="material-hero__specs">
+            <div>
+              <div class="material-hero__spec-key">Alloy</div>
+              <div class="material-hero__spec-val">C95400</div>
+            </div>
+            <div>
+              <div class="material-hero__spec-key">Finish</div>
+              <div class="material-hero__spec-val">Sand-blast</div>
+            </div>
+            <div>
+              <div class="material-hero__spec-key">Origin</div>
+              <div class="material-hero__spec-val">Hudson, NY</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="material-satellites">
+
+        <div class="material-card">
+          <div class="photo-slot material-card__photo"
+               style="--photo-fallback: #1D2D44; --photo-caption-color: var(--bone); --photo-caption-border: rgba(240,235,216,0.30); --photo-gradient: repeating-linear-gradient(45deg, transparent 0, transparent 3px, rgba(240,235,216,0.06) 3px, rgba(240,235,216,0.06) 4px); background-image: url('brand-board/images/07-materials-sailcloth.jpg');">
+            <div class="photo-slot__caption">Photo · sailcloth weave</div>
+          </div>
+          <div class="material-card__body">
+            <div class="material-card__row">
+              <div class="material-card__name">Sailcloth NATO</div>
+              <div class="material-card__tag">Strap</div>
+            </div>
+            <div class="material-card__copy">Softens. Salt-tolerant. Rinse and wear.</div>
+          </div>
+        </div>
+
+        <div class="material-card">
+          <div class="photo-slot material-card__photo"
+               style="--photo-fallback: #6B7C8C; --photo-caption-color: var(--bone); --photo-caption-border: rgba(240,235,216,0.40); --photo-gradient: linear-gradient(135deg, rgba(255,255,255,0.22), transparent 55%); background-image: url('brand-board/images/07-materials-sapphire.jpg');">
+            <div class="photo-slot__caption">Photo · sapphire edge</div>
+          </div>
+          <div class="material-card__body">
+            <div class="material-card__row">
+              <div class="material-card__name">Sapphire crystal</div>
+              <div class="material-card__tag">Lens</div>
+            </div>
+            <div class="material-card__copy">Flat. AR-coated underside only.</div>
+          </div>
+        </div>
+
+        <div class="material-card">
+          <div class="photo-slot material-card__photo"
+               style="--photo-fallback: #B8956A; --photo-caption-color: var(--navy); --photo-caption-border: rgba(29,45,68,0.35); --photo-gradient: repeating-linear-gradient(90deg, transparent 0, transparent 8px, rgba(29,45,68,0.04) 8px, rgba(29,45,68,0.04) 9px); background-image: url('brand-board/images/07-materials-kraft.jpg');">
+            <div class="photo-slot__caption">Photo · kraft + foil</div>
+          </div>
+          <div class="material-card__body">
+            <div class="material-card__row">
+              <div class="material-card__name">Kraft uncoated</div>
+              <div class="material-card__tag">Pkg</div>
+            </div>
+            <div class="material-card__copy">350 GSM. Brass foil mark, no plastic.</div>
+          </div>
+        </div>
+
+        <div class="material-card">
+          <div class="photo-slot material-card__photo"
+               style="--photo-fallback: #E8E1CB; --photo-caption-color: var(--navy); --photo-caption-border: rgba(29,45,68,0.30); --photo-gradient: repeating-linear-gradient(0deg, transparent 0, transparent 5px, rgba(29,45,68,0.025) 5px, rgba(29,45,68,0.025) 6px); background-image: url('brand-board/images/07-materials-cotton.jpg');">
+            <div class="photo-slot__caption">Photo · cotton weave</div>
+          </div>
+          <div class="material-card__body">
+            <div class="material-card__row">
+              <div class="material-card__name">Ringspun cotton</div>
+              <div class="material-card__tag">Apparel</div>
+            </div>
+            <div class="material-card__copy">Organic. 8 oz. Fades to ivory.</div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <div class="spread__footer-label">Materials</div>
+  <div class="spread__footer-page">07 / 16</div>
+</section>
+
+
+<!-- ============================================================
+     SPREAD 08 — APPLICATIONS
+     ============================================================ -->
+<section class="spread" aria-label="Applications">
+  <div class="spread__topbar">
+    <span>Applications · Vol. I</span>
+    <span>The Brand Met The World · 08 / 16</span>
+  </div>
+
+  <div class="spread__body">
+    <div class="spread__title-row">
+      <h2 class="spread__title">In <em>use.</em></h2>
+      <div class="spread__title-meta">dial · tag · card · screen</div>
+    </div>
+
+    <div class="applications-spread__grid">
+
+      <div class="application-hero">
+        <div class="photo-slot application-hero__photo"
+             style="--photo-fallback: #0D1321; --photo-caption-color: var(--brass); --photo-caption-border: rgba(167,133,70,0.40); --photo-gradient: radial-gradient(circle at 50% 50%, rgba(167,133,70,0.18), transparent 60%); background-image: url('brand-board/images/08-applications-dial.jpg');">
+          <div class="photo-slot__caption">Photo · watch dial · macro</div>
+        </div>
+        <div class="application-hero__body">
+          <div class="application-hero__row">
+            <div class="application-hero__name">Bayside <em>Chicago</em></div>
+            <div class="application-hero__tag">Dial · Ref. 01</div>
+          </div>
+          <div class="application-hero__copy">
+            Aluminum-bronze case, sailcloth NATO, sapphire crystal. The dial face is matte navy lacquer with brass indices and Super-LumiNova BGW9.
+          </div>
+        </div>
+      </div>
+
+      <div class="application-satellites">
+
+        <div class="application-satellite">
+          <div class="photo-slot application-satellite__photo"
+               style="--photo-fallback: #B8956A; --photo-caption-color: var(--navy); --photo-caption-border: rgba(29,45,68,0.35); --photo-gradient: repeating-linear-gradient(90deg, transparent 0, transparent 6px, rgba(29,45,68,0.04) 6px, rgba(29,45,68,0.04) 7px); background-image: url('brand-board/images/08-applications-hangtag.jpg');">
+            <div class="photo-slot__caption">Photo · kraft hangtag</div>
+          </div>
+          <div class="application-satellite__body">
+            <div class="application-satellite__label">Hangtag</div>
+            <div class="application-satellite__name">Kraft + brass foil</div>
+            <div class="application-satellite__copy">Punched, threaded, signed.</div>
+          </div>
+        </div>
+
+        <div class="application-satellite">
+          <div class="photo-slot application-satellite__photo"
+               style="--photo-fallback: #5C3A28; --photo-caption-color: var(--bone); --photo-caption-border: rgba(240,235,216,0.40); --photo-gradient: linear-gradient(135deg, rgba(139,90,60,0.18), rgba(60,30,20,0.30)); background-image: url('brand-board/images/08-applications-card.jpg');">
+            <div class="photo-slot__caption">Photo · card on leather</div>
+          </div>
+          <div class="application-satellite__body">
+            <div class="application-satellite__label">Paperwork</div>
+            <div class="application-satellite__name">Bone, 350 GSM</div>
+            <div class="application-satellite__copy">Card, letterhead, invoice.</div>
+          </div>
+        </div>
+
+        <div class="application-satellite">
+          <div class="photo-slot application-satellite__photo"
+               style="--photo-fallback: #1a2030; --photo-caption-color: var(--bone); --photo-caption-border: rgba(240,235,216,0.30); --photo-gradient: linear-gradient(180deg, rgba(0,0,0,0.30) 0%, transparent 14%); background-image: url('brand-board/images/08-applications-screen.jpg');">
+            <div class="photo-slot__caption">Photo · web on screen</div>
+          </div>
+          <div class="application-satellite__body">
+            <div class="application-satellite__label">Screen</div>
+            <div class="application-satellite__name">offshore.co</div>
+            <div class="application-satellite__copy">Storefront, journal, field.</div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <div class="spread__footer-label">Applications</div>
+  <div class="spread__footer-page">08 / 16</div>
+</section>
+
+
+<!-- ============================================================
+     SPREAD 09 — CHAPTER I CLOSER
+     ============================================================ -->
+<section class="spread" aria-label="Chapter I Closer">
+  <div class="spread__topbar">
+    <span>Chapter I · Vol. I</span>
+    <span>Chapter I closes here · 09 / 16</span>
+  </div>
+
+  <div class="spread__body colophon-spread__body">
+    <div class="colophon-spread__mark">
+      <svg class="mark" viewBox="0 0 512 512" fill="none">
+        <path d="M 450.89 346.88 A 215.04 215.04 0 1 1 450.89 165.12" stroke-width="58.88" stroke-linecap="butt"/>
+        <circle cx="256" cy="256" r="92.16" stroke-width="48.64"/>
+      </svg>
+    </div>
+
+    <div class="colophon-spread__quote">
+      <div class="colophon-spread__quote-line">Patina <em>is</em> the proof.</div>
+      <div class="colophon-spread__quote-rule"></div>
+      <div class="chapter-close__hint">Chapter II — Performance — begins on the next spread.</div>
+    </div>
+  </div>
+
+  <svg class="colophon-spread__pattern" viewBox="0 0 400 200" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+    <g fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round">
+      <path d="M 0 200 A 200 200 0 0 0 400 200" opacity="0.30"/>
+      <path d="M 30 200 A 170 170 0 0 0 370 200" opacity="0.25"/>
+      <path d="M 60 200 A 140 140 0 0 0 340 200" opacity="0.20"/>
+      <path d="M 90 200 A 110 110 0 0 0 310 200" opacity="0.15"/>
+      <path d="M 120 200 A 80 80 0 0 0 280 200" opacity="0.11"/>
+      <path d="M 150 200 A 50 50 0 0 0 250 200" opacity="0.08"/>
+      <path d="M 180 200 A 20 20 0 0 0 220 200" opacity="0.05"/>
+    </g>
+  </svg>
+
+  <div class="spread__footer-label">Chapter I close</div>
+  <div class="spread__footer-page">09 / 16</div>
+</section>
+
+
+<!-- ============================================================
+     CHAPTER II — PERFORMANCE
+     ============================================================ -->
+
+
+<!-- ============================================================
+     SPREAD 10 — PERFORMANCE CHAPTER DIVIDER
+     ============================================================ -->
+<section class="spread spread--perf" aria-label="Performance Chapter Divider">
+  <div class="spread__topbar">
+    <span>Chapter II · Vol. I</span>
+    <span>Performance · 10 / 16</span>
+  </div>
+
+  <div class="spread__body divider">
+    <div class="divider__chapter-mark">Chapter II</div>
+    <h1 class="divider__title">PERFORMANCE</h1>
+    <div class="divider__rule"></div>
+    <p class="divider__tagline">When the depth is the design constraint.</p>
+
+    <div class="divider__meta">
+      <div class="divider__meta-cell">
+        <div class="divider__meta-key">Tier</div>
+        <div class="divider__meta-val">Endorsed sub-line</div>
+      </div>
+      <div class="divider__meta-cell">
+        <div class="divider__meta-key">Spreads</div>
+        <div class="divider__meta-val">10 — 15</div>
+      </div>
+      <div class="divider__meta-cell">
+        <div class="divider__meta-key">Closes</div>
+        <div class="divider__meta-val">Saturation, Ref. PS-01</div>
+      </div>
+    </div>
+  </div>
+
+  <svg class="divider__pattern" viewBox="0 0 400 200" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+    <g fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round">
+      <path d="M 0 200 A 200 200 0 0 0 400 200" opacity="0.85"/>
+      <path d="M 30 200 A 170 170 0 0 0 370 200" opacity="0.70"/>
+      <path d="M 60 200 A 140 140 0 0 0 340 200" opacity="0.55"/>
+      <path d="M 90 200 A 110 110 0 0 0 310 200" opacity="0.42"/>
+      <path d="M 120 200 A 80 80 0 0 0 280 200" opacity="0.30"/>
+      <path d="M 150 200 A 50 50 0 0 0 250 200" opacity="0.20"/>
+      <path d="M 180 200 A 20 20 0 0 0 220 200" opacity="0.12"/>
+    </g>
+  </svg>
+
+  <div class="spread__footer-label">Chapter Divider</div>
+  <div class="spread__footer-page">10 / 16</div>
+</section>
+
+
+<!-- ============================================================
+     SPREAD 11 — THE TIER
+     ============================================================ -->
+<section class="spread spread--tier" aria-label="The Tier">
+  <div class="spread__topbar">
+    <span>Architecture · Vol. I</span>
+    <span>The Tier · 11 / 16</span>
+  </div>
+
+  <div class="spread__body">
+    <div class="tier__intro">
+      <div class="tier__intro-eyebrow">One house <span>·</span> two registers</div>
+      <h2 class="tier__intro-headline">Same brand. <em>Colder hour.</em></h2>
+    </div>
+
+    <div class="tier__table">
+
+      <div class="tier__col tier__col--co">
+        <div class="tier__col-head">
+          <div class="tier__col-tier">Foundation</div>
+          <div class="tier__col-name">Offshore <em>Co.</em></div>
+        </div>
+        <div class="tier__row" data-label="Register">Late-afternoon light, workshop quiet</div>
+        <div class="tier__row" data-label="Palette">Bone, navy, brass — coral runs lean</div>
+        <div class="tier__row" data-label="Type"><em>Italic carries brass</em></div>
+        <div class="tier__row" data-label="Materials">Bronze, sailcloth, leather, kraft</div>
+        <div class="tier__row" data-label="Voice">Editorial — the story leads</div>
+        <div class="tier__row" data-label="Naming"><em>Bayside</em> Chicago, Ref. 01</div>
+      </div>
+
+      <div class="tier__labels">
+        <div class="tier__label-spacer"></div>
+        <div class="tier__label">Register</div>
+        <div class="tier__label">Palette</div>
+        <div class="tier__label">Type</div>
+        <div class="tier__label">Materials</div>
+        <div class="tier__label">Voice</div>
+        <div class="tier__label">Naming</div>
+      </div>
+
+      <div class="tier__col tier__col--perf">
+        <div class="tier__col-head">
+          <div class="tier__col-tier">Performance</div>
+          <div class="tier__col-name">OFFSHORE PERFORMANCE</div>
+        </div>
+        <div class="tier__row" data-label="Register">Underwater natural light, instrument clarity</div>
+        <div class="tier__row" data-label="Palette">Navy-deep, bone, brass, <strong>steel</strong></div>
+        <div class="tier__row" data-label="Type"><strong>Sans caps carries brass</strong></div>
+        <div class="tier__row" data-label="Materials">Titanium, Cordura, Vectran, sapphire 4mm</div>
+        <div class="tier__row" data-label="Voice">Specification — the numbers lead</div>
+        <div class="tier__row" data-label="Naming"><strong>Saturation</strong>, Ref. PS-01</div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="spread__footer-label">The Tier</div>
+  <div class="spread__footer-page">11 / 16</div>
+</section>
+
+
+<!-- ============================================================
+     SPREAD 12 — PERFORMANCE PALETTE & MATERIALS
+     ============================================================ -->
+<section class="spread spread--perf" aria-label="Performance Palette and Materials">
+  <div class="spread__topbar">
+    <span>System · Vol. I</span>
+    <span>Palette &amp; Materials · 12 / 16</span>
+  </div>
+
+  <div class="spread__body">
+    <div class="spread__title-row">
+      <h2 class="spread__title">THE COLD <em>system</em></h2>
+      <div class="spread__title-meta">tokens/performance.css · MATERIALS-PERFORMANCE.md</div>
+    </div>
+
+    <div class="perf-system">
+
+      <div class="perf-section">
+        <div class="perf-section__head">
+          <div class="perf-section__head-label">Palette · five values</div>
+          <div class="perf-section__head-eyebrow">Navy-deep leads. Steel is new.</div>
+        </div>
+
+        <div class="perf-palette">
+
+          <div class="perf-swatch perf-swatch--lead">
+            <div class="perf-swatch__chip perf-swatch__chip--bordered" style="background: var(--navy-deep);"></div>
+            <div class="perf-swatch__body">
+              <div class="perf-swatch__name">--navy-deep</div>
+              <div class="perf-swatch__hex">#0D1321</div>
+              <div class="perf-swatch__role"><em>field</em></div>
+            </div>
+          </div>
+
+          <div class="perf-swatch">
+            <div class="perf-swatch__chip" style="background: var(--steel-deep);"></div>
+            <div class="perf-swatch__body">
+              <div class="perf-swatch__name">--steel-deep</div>
+              <div class="perf-swatch__hex">#4A5868</div>
+              <div class="perf-swatch__role"><em>instrument body</em></div>
+            </div>
+          </div>
+
+          <div class="perf-swatch">
+            <div class="perf-swatch__chip" style="background: var(--steel);"></div>
+            <div class="perf-swatch__body">
+              <div class="perf-swatch__name">--steel</div>
+              <div class="perf-swatch__hex">#8B9AAB</div>
+              <div class="perf-swatch__role"><em>indices, edges</em></div>
+            </div>
+          </div>
+
+          <div class="perf-swatch">
+            <div class="perf-swatch__chip" style="background: var(--brass);"></div>
+            <div class="perf-swatch__body">
+              <div class="perf-swatch__name">--brass</div>
+              <div class="perf-swatch__hex">#A78546</div>
+              <div class="perf-swatch__role"><em>endorsement only</em></div>
+            </div>
+          </div>
+
+          <div class="perf-swatch">
+            <div class="perf-swatch__chip perf-swatch__chip--bordered" style="background: var(--bone);"></div>
+            <div class="perf-swatch__body">
+              <div class="perf-swatch__name">--bone</div>
+              <div class="perf-swatch__hex">#F0EBD8</div>
+              <div class="perf-swatch__role"><em>type, lume</em></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="perf-section">
+        <div class="perf-section__head">
+          <div class="perf-section__head-label">Materials · four substrates</div>
+          <div class="perf-section__head-eyebrow">Patina is replaced by tolerance.</div>
+        </div>
+
+        <div class="perf-materials">
+
+          <div class="perf-material">
+            <div class="perf-material__photo" style="--photo-fallback: #6B7785; background-image: url('brand-board/images/12-materials-titanium.jpg');">
+              <div class="perf-material__caption">photo · titanium</div>
+            </div>
+            <div class="perf-material__body">
+              <div class="perf-material__name">Grade 5 titanium</div>
+              <div class="perf-material__tag">Case · Hero</div>
+              <div class="perf-material__copy">Ti-6Al-4V. <strong>40% lighter</strong> than steel, non-magnetic, biocompatible. Holds finish, won't pit in salt water.</div>
+            </div>
+          </div>
+
+          <div class="perf-material">
+            <div class="perf-material__photo" style="--photo-fallback: #3A4452; --photo-gradient: repeating-linear-gradient(45deg, transparent 0, transparent 3px, rgba(240,235,216,0.08) 3px, rgba(240,235,216,0.08) 4px); background-image: url('brand-board/images/12-materials-vectran.jpg');">
+              <div class="perf-material__caption">photo · Vectran weave</div>
+            </div>
+            <div class="perf-material__body">
+              <div class="perf-material__name">Vectran strap</div>
+              <div class="perf-material__tag">Strap</div>
+              <div class="perf-material__copy">Liquid-crystal polymer fiber. <strong>5× the cut resistance</strong> of nylon, zero stretch, used in the Mars rover airbags.</div>
+            </div>
+          </div>
+
+          <div class="perf-material">
+            <div class="perf-material__photo" style="--photo-fallback: #5C6878; --photo-gradient: linear-gradient(135deg, rgba(255,255,255,0.22), transparent 55%); background-image: url('brand-board/images/12-materials-sapphire.jpg');">
+              <div class="perf-material__caption">photo · sapphire edge</div>
+            </div>
+            <div class="perf-material__body">
+              <div class="perf-material__name">Sapphire 4.0 mm</div>
+              <div class="perf-material__tag">Lens</div>
+              <div class="perf-material__copy">Domed, double AR-coated. <strong>Tested to 200 bar</strong>. The thickest mass-produced dive crystal in the segment.</div>
+            </div>
+          </div>
+
+          <div class="perf-material">
+            <div class="perf-material__photo" style="--photo-fallback: #2D353F; --photo-gradient: repeating-linear-gradient(90deg, transparent 0, transparent 6px, rgba(167,133,70,0.06) 6px, rgba(167,133,70,0.06) 7px); background-image: url('brand-board/images/12-materials-cordura.jpg');">
+              <div class="perf-material__caption">photo · Cordura weave</div>
+            </div>
+            <div class="perf-material__body">
+              <div class="perf-material__name">Cordura 1000D</div>
+              <div class="perf-material__tag">Apparel</div>
+              <div class="perf-material__copy">High-tenacity nylon ripstop. <strong>Abrasion-rated</strong>, water-shedding, used by every NATO mil-spec drysuit.</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="spread__footer-label">Palette &amp; Materials</div>
+  <div class="spread__footer-page">12 / 16</div>
+</section>
+
+
+<!-- ============================================================
+     SPREAD 13 — THE THREE MISSIONS
+     ============================================================ -->
+<section class="spread spread--perf" aria-label="The Three Missions">
+  <div class="spread__topbar">
+    <span>Products · Vol. I</span>
+    <span>The Three Missions · 13 / 16</span>
+  </div>
+
+  <div class="spread__body">
+    <div class="spread__title-row">
+      <h2 class="spread__title">THREE <em>missions</em></h2>
+      <div class="spread__title-meta">depth · environment · ref. series</div>
+    </div>
+
+    <div class="missions">
+
+      <div class="mission">
+        <div class="mission__depth-band">
+          <div class="mission__depth-ticks"></div>
+          <div class="mission__depth-marker">
+            <div class="mission__depth-num">1000<em>m</em></div>
+            <div class="mission__depth-label">Saturation</div>
+          </div>
+        </div>
+        <div class="mission__body">
+          <div class="mission__name">SATURATION</div>
+          <div class="mission__ref">Ref. PS-01 — PS-04</div>
+          <div class="mission__rule"></div>
+          <div class="mission__desc">For <em>commercial work</em>. Built for the chamber and the long bell run.</div>
+          <div class="mission__specs">
+            <div class="mission__spec-row"><span class="mission__spec-key">Rating</span><span class="mission__spec-val">1000m / 100 bar</span></div>
+            <div class="mission__spec-row"><span class="mission__spec-key">Helium</span><span class="mission__spec-val">Release valve</span></div>
+            <div class="mission__spec-row"><span class="mission__spec-key">Case</span><span class="mission__spec-val">Ti Gr. 5 · 44 mm</span></div>
+            <div class="mission__spec-row"><span class="mission__spec-key">Strap</span><span class="mission__spec-val">Vectran NATO</span></div>
+            <div class="mission__spec-row"><span class="mission__spec-key">Movement</span><span class="mission__spec-val">Sellita SW300-1</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mission mission--flagship">
+        <div class="mission__depth-band">
+          <div class="mission__depth-ticks"></div>
+          <div class="mission__depth-marker">
+            <div class="mission__depth-num">500<em>m</em></div>
+            <div class="mission__depth-label">Pelagic</div>
+          </div>
+        </div>
+        <div class="mission__body">
+          <div class="mission__name">PELAGIC</div>
+          <div class="mission__ref">Ref. PP-01 — PP-06</div>
+          <div class="mission__rule"></div>
+          <div class="mission__desc">For <em>technical recreational</em>. Trimix, deep wrecks, drift. The everyday Performance.</div>
+          <div class="mission__specs">
+            <div class="mission__spec-row"><span class="mission__spec-key">Rating</span><span class="mission__spec-val">500m / 50 bar</span></div>
+            <div class="mission__spec-row"><span class="mission__spec-key">Crystal</span><span class="mission__spec-val">Sapphire 4.0 mm</span></div>
+            <div class="mission__spec-row"><span class="mission__spec-key">Case</span><span class="mission__spec-val">Ti Gr. 5 · 42 mm</span></div>
+            <div class="mission__spec-row"><span class="mission__spec-key">Strap</span><span class="mission__spec-val">Vectran NATO / FKM</span></div>
+            <div class="mission__spec-row"><span class="mission__spec-key">Movement</span><span class="mission__spec-val">Sellita SW200-1</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mission">
+        <div class="mission__depth-band">
+          <div class="mission__depth-ticks"></div>
+          <div class="mission__depth-marker">
+            <div class="mission__depth-num">300<em>m</em></div>
+            <div class="mission__depth-label">Bathyal</div>
+          </div>
+        </div>
+        <div class="mission__body">
+          <div class="mission__name">BATHYAL</div>
+          <div class="mission__ref">Ref. PB-01 — PB-08</div>
+          <div class="mission__rule"></div>
+          <div class="mission__desc">For <em>working recreational</em>. The shoreline, the wreck dive, the long swim.</div>
+          <div class="mission__specs">
+            <div class="mission__spec-row"><span class="mission__spec-key">Rating</span><span class="mission__spec-val">300m / 30 bar</span></div>
+            <div class="mission__spec-row"><span class="mission__spec-key">Crystal</span><span class="mission__spec-val">Sapphire 2.5 mm</span></div>
+            <div class="mission__spec-row"><span class="mission__spec-key">Case</span><span class="mission__spec-val">Ti Gr. 5 · 40 mm</span></div>
+            <div class="mission__spec-row"><span class="mission__spec-key">Strap</span><span class="mission__spec-val">FKM / sailcloth</span></div>
+            <div class="mission__spec-row"><span class="mission__spec-key">Movement</span><span class="mission__spec-val">Sellita SW200-1</span></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="spread__footer-label">The Three Missions</div>
+  <div class="spread__footer-page">13 / 16</div>
+</section>
+
+
+<!-- ============================================================
+     SPREAD 14 — PERFORMANCE VOICE
+     ============================================================ -->
+<section class="spread spread--perf" aria-label="Performance Voice">
+  <div class="spread__topbar">
+    <span>Voice · Vol. I</span>
+    <span>How Performance Sounds · 14 / 16</span>
+  </div>
+
+  <div class="spread__body">
+    <div class="spread__title-row">
+      <h2 class="spread__title">THE NUMBERS <em>lead</em></h2>
+      <div class="spread__title-meta">VOICE-PERFORMANCE.md</div>
+    </div>
+
+    <div class="voice">
+
+      <div class="voice__compare">
+
+        <div class="voice__col voice__col--co">
+          <div class="voice__col-tag">In Co. voice</div>
+          <div class="voice__col-headline">An <em>instrument</em>,<br>not a feature.</div>
+          <div class="voice__col-body">Offshore Co. makes small-batch dive watches. Each piece is built to <em>age</em> — not maintained against time but improved by it.</div>
+        </div>
+
+        <div class="voice__divider">
+          <div class="voice__divider-line"></div>
+          <div class="voice__divider-symbol">→</div>
+          <div class="voice__divider-line"></div>
+        </div>
+
+        <div class="voice__col voice__col--perf">
+          <div class="voice__col-tag">In Performance voice</div>
+          <div class="voice__col-headline">RATED TO <em>1000 m</em></div>
+          <div class="voice__col-body">Grade 5 titanium. <strong>4 mm sapphire</strong>. Helium release valve at 9. Tested past <strong>100 bar</strong> at the chamber, by hand, before shipping.</div>
+        </div>
+
+      </div>
+
+      <div class="voice__rules">
+
+        <div class="voice__rule">
+          <div class="voice__rule-label">Rule</div>
+          <div class="voice__rule-line"><strong>Specs lead.</strong></div>
+          <div class="voice__rule-note">Numbers come first; description follows them. Never the reverse.</div>
+        </div>
+
+        <div class="voice__rule">
+          <div class="voice__rule-label">Rule</div>
+          <div class="voice__rule-line">Italic recedes.</div>
+          <div class="voice__rule-note">One italic word per sentence, max. Caps and mono carry the feeling.</div>
+        </div>
+
+        <div class="voice__rule">
+          <div class="voice__rule-label">Rule</div>
+          <div class="voice__rule-line"><strong>Cite the test.</strong></div>
+          <div class="voice__rule-note">"Tested to" beats "rated to." Specify the standard: ISO 6425, EN 250.</div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <div class="spread__footer-label">Voice</div>
+  <div class="spread__footer-page">14 / 16</div>
+</section>
+
+
+<!-- ============================================================
+     SPREAD 15 — SATURATION REFERENCE
+     ============================================================ -->
+<section class="spread spread--perf" aria-label="Saturation Reference">
+  <div class="spread__topbar">
+    <span>Reference · Vol. I</span>
+    <span>Saturation · Ref. PS-01 · 15 / 16</span>
+  </div>
+
+  <div class="spread__body">
+    <div class="spread__title-row">
+      <h2 class="spread__title">REF. <em>PS-01</em></h2>
+      <div class="spread__title-meta">the chapter's product close</div>
+    </div>
+
+    <div class="sat">
+
+      <div class="sat__hero" style="background-image: url('brand-board/images/15-saturation-ref-ps01.jpg');">
+        <div class="sat__hero-caption">Photo · Saturation PS-01 · 3/4 view</div>
+        <div class="sat__hero-overlay">
+          <div class="sat__hero-name">SATURATION</div>
+          <div class="sat__hero-meta">1000m · Ref. PS-01</div>
+        </div>
+      </div>
+
+      <div class="sat__sheet">
+
+        <div class="sat__sheet-head">
+          <div class="sat__sheet-eyebrow">Flagship saturation tier</div>
+          <div class="sat__sheet-title">Built for the <em>chamber</em>. Tested by hand.</div>
+        </div>
+
+        <div class="sat__sheet-groups">
+
+          <div class="sat__group">
+            <div class="sat__group-label">Performance</div>
+            <div class="sat__group-rows">
+              <div class="sat__row"><span class="sat__row-key">Depth rating</span><span class="sat__row-val"><strong>1000 m</strong> / 100 bar</span></div>
+              <div class="sat__row"><span class="sat__row-key">Helium release</span><span class="sat__row-val">Auto valve @ 9</span></div>
+              <div class="sat__row"><span class="sat__row-key">Standard</span><span class="sat__row-val">ISO 6425</span></div>
+            </div>
+          </div>
+
+          <div class="sat__group">
+            <div class="sat__group-label">Construction</div>
+            <div class="sat__group-rows">
+              <div class="sat__row"><span class="sat__row-key">Case</span><span class="sat__row-val">Ti-6Al-4V · <strong>44 mm</strong></span></div>
+              <div class="sat__row"><span class="sat__row-key">Crystal</span><span class="sat__row-val">Sapphire <strong>4.0 mm</strong></span></div>
+              <div class="sat__row"><span class="sat__row-key">Bezel</span><span class="sat__row-val">Unidirectional · 120-click</span></div>
+              <div class="sat__row"><span class="sat__row-key">Lume</span><span class="sat__row-val">BGW9 · Grade A</span></div>
+            </div>
+          </div>
+
+          <div class="sat__group">
+            <div class="sat__group-label">Movement</div>
+            <div class="sat__group-rows">
+              <div class="sat__row"><span class="sat__row-key">Caliber</span><span class="sat__row-val">Sellita SW300-1</span></div>
+              <div class="sat__row"><span class="sat__row-key">Power reserve</span><span class="sat__row-val">56 h</span></div>
+              <div class="sat__row"><span class="sat__row-key">Accuracy</span><span class="sat__row-val">-4 / +6 sec/day</span></div>
+            </div>
+          </div>
+
+          <div class="sat__group">
+            <div class="sat__group-label">Strap &amp; Origin</div>
+            <div class="sat__group-rows">
+              <div class="sat__row"><span class="sat__row-key">Strap</span><span class="sat__row-val">Vectran NATO · navy</span></div>
+              <div class="sat__row"><span class="sat__row-key">Made</span><span class="sat__row-val">Hudson Valley, NY</span></div>
+              <div class="sat__row"><span class="sat__row-key">Edition</span><span class="sat__row-val">PS-01 — PS-04</span></div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="sat__cert">
+          <div class="sat__cert-pill">ISO 6425</div>
+          <div class="sat__cert-pill">SW300-1</div>
+          <div class="sat__cert-pill">100 bar tested</div>
+          <div class="sat__cert-pill">Hand-pressure</div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <div class="spread__footer-label">Saturation · Ref. PS-01</div>
+  <div class="spread__footer-page">15 / 16</div>
+</section>
+
+
+<!-- ============================================================
+     SPREAD 16 — VOLUME I COLOPHON
+     ============================================================ -->
+<section class="spread" aria-label="Volume I Colophon">
+  <div class="spread__topbar">
+    <span>Colophon · Vol. I</span>
+    <span>End Matter · 16 / 16</span>
+  </div>
+
+  <div class="spread__body colophon-spread__body">
+    <div class="colophon-spread__mark">
+      <svg class="mark" viewBox="0 0 512 512" fill="none">
+        <path d="M 450.89 346.88 A 215.04 215.04 0 1 1 450.89 165.12" stroke-width="58.88" stroke-linecap="butt"/>
+        <circle cx="256" cy="256" r="92.16" stroke-width="48.64"/>
+      </svg>
+    </div>
+
+    <div class="colophon-spread__quote">
+      <div class="colophon-spread__quote-line">Two registers. <em>One house.</em></div>
+      <div class="colophon-spread__quote-rule"></div>
+    </div>
+
+    <div class="colophon-spread__credits colophon-spread__credits--double">
+      <div>
+        <div class="credits-column__label">Set In</div>
+        <div class="credits-column__body">
+          Cormorant Garamond — display, italic.<br>
+          DM Sans — body, wordmark, UI, Performance display.<br>
+          DM Mono — metadata, page numbers, specs.
+        </div>
+      </div>
+      <div>
+        <div class="credits-column__label">Bound In</div>
+        <div class="credits-column__body">
+          Chapter I — bone, navy, brass.<br>
+          Chapter II — navy-deep, steel, brass.<br>
+          The C-in-O mark, on a 512-grid.
+        </div>
+      </div>
+      <div>
+        <div class="credits-column__label">Built From</div>
+        <div class="credits-column__body">
+          Design system v0.3.0.<br>
+          Offshore Co. — Hudson Valley, NY.<br>
+          Offshore Performance, same address.
+        </div>
+      </div>
+      <div>
+        <div class="credits-column__label">Next</div>
+        <div class="credits-column__body">
+          Volume II — Field &amp; Cause.<br>
+          The apparel chapters.<br>
+          The cause-edition spec.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <svg class="colophon-spread__pattern" viewBox="0 0 400 200" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+    <g fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round">
+      <path d="M 0 200 A 200 200 0 0 0 400 200" opacity="0.30"/>
+      <path d="M 30 200 A 170 170 0 0 0 370 200" opacity="0.25"/>
+      <path d="M 60 200 A 140 140 0 0 0 340 200" opacity="0.20"/>
+      <path d="M 90 200 A 110 110 0 0 0 310 200" opacity="0.15"/>
+      <path d="M 120 200 A 80 80 0 0 0 280 200" opacity="0.11"/>
+      <path d="M 150 200 A 50 50 0 0 0 250 200" opacity="0.08"/>
+      <path d="M 180 200 A 20 20 0 0 0 220 200" opacity="0.05"/>
+    </g>
+  </svg>
+
+  <div class="spread__footer-label">End</div>
+  <div class="spread__footer-page">— · —</div>
+</section>
+
+</body>
+</html>
